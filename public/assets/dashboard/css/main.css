@@ -1,0 +1,58 @@
+.content-size{
+    max-width: 980px;
+}
+
+.form-description{
+    min-height: 180px !important;
+}
+
+.form-bottom{
+    text-align: right;
+    margin-top: 25px;
+}
+
+.table button{
+    background: transparent;
+}
+
+.vcenter{
+    vertical-align: middle !important;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+
+.mr-20{
+    margin-right: 20px;
+}
+
+.mb-20{
+    margin-bottom: 20px;
+}
+
+.ml-20{
+    margin-left: 20px;
+}
+
+.box-profile{
+    padding: 30px;
+}
+
+.swal-button {
+    border-radius: unset;
+}
+
+.navbar-nav>.user-menu .user-image{
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.navbar-nav>.user-menu>.dropdown-menu>li.user-header>img{
+    background-color: #ffffff;
+}
+
+.user-panel>.image>img{
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+}
