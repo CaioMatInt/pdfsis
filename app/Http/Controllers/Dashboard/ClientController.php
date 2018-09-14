@@ -110,11 +110,11 @@ class ClientController extends Controller
         $request->validate(
             [
                 'company' => 'required|string',
-                'cnpj' => 'required|string',
+                'cnpj' => 'required|string|unique:clients,cnpj,'.$id,
                 'phone' => 'required|string',
                 'address' => 'required|string',
                 'contact_name' => 'required|string',
-                'email' => 'required|email'
+                'email' => 'required|email|unique:clients,email,'.$id
             ]);
 
         Client::find($id)->update($request->all());

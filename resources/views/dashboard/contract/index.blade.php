@@ -63,6 +63,11 @@
                                                 data-toggle="tooltip" title="Excluir" data-placement="top">
                                             <i class="fa fa-trash text-danger"></i>
                                         </button>
+                                        <a href="{{ route('contracts.print', $row->id) }}"
+                                           class="btn btn-default btn-flat" data-toggle="tooltip" title="Gerar PDF"
+                                           data-placement="top">
+                                            <i class="fa fa-print"></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

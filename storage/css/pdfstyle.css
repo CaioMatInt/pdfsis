@@ -1,0 +1,17 @@
+.titulo {
+    text-align:center;
+    font-family:Lucida Sans Unicode;
+    font-size:20pt;
+    font-weight:bold;
+}
+
+.subtitulo {
+    text-align:center;
+    font-family:Lucida Sans Unicode;
+    font-size:16pt;
+    font-weight:bold;
+}
+
+.testebottom {
+    padding-bottom: 20%;
+}
