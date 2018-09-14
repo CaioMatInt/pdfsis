@@ -130,6 +130,8 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
+        //TODO: INSERIR UM TRY CATCH, POIS MSG RECEBE ANTES A CONFIRMAÇÃO
+
         $cliente = Client::find($id);
 
         $msg = [
@@ -138,6 +140,10 @@ class ClientController extends Controller
         ];
 
         if(!$cliente){
+            $msg = [
+                'type' => 'danger',
+                'text' => 'Cliente não encontrado',
+            ];
             return redirect()->route('clients.index');
         } else{
         $cliente->delete();

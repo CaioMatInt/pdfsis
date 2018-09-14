@@ -110,8 +110,3 @@
         </section>
     </div>
 @endsection
-
-@section('scripts')
-    <script src="{{ asset('assets/js/plugins/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/blog.js') }}"></script>
-@endsection

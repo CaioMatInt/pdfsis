@@ -84,7 +84,7 @@
 
         swal({
             title: '',
-            text: 'Esta ação irá excluir a notícia selecionada, deseja continuar?',
+            text: 'Esta ação irá excluir o cliente selecionado, deseja continuar?',
             icon: 'warning',
             buttons: true,
             dangerMode: true,
