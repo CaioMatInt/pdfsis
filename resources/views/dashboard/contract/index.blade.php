@@ -65,7 +65,7 @@
                                         </button>
                                         <a href="{{ route('contracts.print', $row->id) }}"
                                            class="btn btn-default btn-flat" data-toggle="tooltip" title="Gerar PDF"
-                                           data-placement="top">
+                                           data-placement="top" target="_blank">
                                             <i class="fa fa-print"></i>
                                         </a>
                                     </div>
