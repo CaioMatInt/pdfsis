@@ -134,7 +134,7 @@ class ContractController extends Controller
          $mpdf = new \Mpdf\Mpdf();
         $pagina1 = "
 
-<body><div class='pagina'><div class='titulo'>PROPOSTA COMERCIAL</div>
+<body><br><br><div class='pagina'><br><div class='titulo'>PROPOSTA COMERCIAL</div>
     <div class='imagemcontrato'>$contract->image</div>
     <p class='subtitulo'>$contract->title</p>
     <div class='espacamento-titulo'></div>
@@ -151,7 +151,7 @@ class ContractController extends Controller
 
             $pagina2 = "
 <body>
-<div class='pagina'>   
+<div class='pagina'> 
     <div class='titulo'>ÍNDICE</div>
     <p>1.	Objeto – Serviço Solicitado 3</p>
     <p>2.	Descrição do Serviço 3</p>
@@ -170,10 +170,47 @@ class ContractController extends Controller
 </div>
 </body>
 ";
-        $pagina3 = "<body><p class='pagina'>dasdsa</p></body>
+        $pagina3 = "
+        <div class='retanguloverde'> &nbsp; 1.	Objeto – Serviço Solicitado</div>    
+        <br><div class='texto'>
+        <p>Desenvolvimento do novo site institucional da CRIAH.</p>
+        <p>Premissas:</p>
+        <p>Site em Wordpress gerenciável.</p>
+        <p>Endereço do Wireframe:</p>
+        <p>https://xd.adobe.com/spec/9e8635a7-8bae-41b2-6af0-c7470b4c06e7-e8b7/</p>
+
+        
+        
+        </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 2.	Descrição do Serviço </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 3.	Pré requisitos  </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 4.	Exceções </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 5.	Adicional </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 6.	Equipe de Trabalho </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 7.	Tempo de Execução </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 8.	Valor </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 9.	Forma de Pagamento </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 10.	Manutenção após entrega </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 11.	Infraestrutura (Hospedagem) </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 12.	CDN (Content Delivery Network) </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 13.	Sustentação </div><br>
+        
+        <br><div class='retanguloverde'> &nbsp; 14.	Validade </div><br>
+        
         ";
 
-        $pagina4 = "<body><p class='pagina'>asdas</p></body>";
 
 
 
@@ -193,6 +230,17 @@ class ContractController extends Controller
         $header = "<div class='cabecalho'><img src='http://i64.tinypic.com/im2eth.png' width='145' height='47'/>
     <hr>";
 
+        $assinaturaRenan = "
+<br><br>
+<div class='assinatura'><p>Atenciosamente, 
+<p>
+<p>Renan Fuentes - CEO </p>
+<p>Tel: +55 (19) 3243-0173 </p>
+<p>Cel: +55 (19) 9 9717-9845 </p>
+<p>Cel: +55 (11) 9 8696-7937 </p>
+</p>Site: www.everysystem.com.br </p></div>
+";
+
             //$mpdf->SetDisplayMode('fullpage');
             $css = \Illuminate\Support\Facades\File::get(storage_path('css\pdfstyle.css'));
         $mpdf->setAutoBottomMargin;
@@ -202,7 +250,7 @@ class ContractController extends Controller
             $mpdf->WriteHTML($pagina1);
             $mpdf->WriteHTML($pagina2);
             $mpdf->WriteHTML($pagina3);
-            $mpdf->WriteHTML($pagina4);
+            $mpdf->WriteHTML($assinaturaRenan);
             $mpdf->Output();
             exit;
 
