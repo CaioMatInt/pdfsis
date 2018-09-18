@@ -42,18 +42,7 @@
                                         @endif
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('requiriments') ? 'has-error' : '' }}">
-                                        <label for="requiriments">requi</label>
-                                        <input type="text" class="form-control" name="requiriments" id="requiriments" value="{{ old('requiriments') }}">
-                                        @if ($errors->has('requiriments'))
-                                            <span class="help-block">{{ $errors->first('requiriments') }}</span>
-                                        @endif
-                                    </div>
                                 </div>
-                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
@@ -65,10 +54,9 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group {{ $errors->has('object') ? 'has-error' : '' }}">
                                 <label for="object">Objeto</label>
-                                <input type="text" class="form-control" name="object" id="object" value="{{ old('object') }}">
+                                <textarea class="form-control" name="object" id="object">{{ old('object') }}</textarea>
                                 @if ($errors->has('object'))
                                     <span class="help-block">{{ $errors->first('object') }}</span>
                                 @endif
@@ -77,9 +65,20 @@
                                 <div class="col-md-12">
                                     <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                                         <label for="description">Descricao</label>
-                                        <input type="text" class="form-control" name="description" id="description" value="{{ old('description') }}">
+                                        <textarea class="form-control" name="description" id="description" value="{{ old('description') }}"></textarea>
                                         @if ($errors->has('description'))
                                             <span class="help-block">{{ $errors->first('description') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group {{ $errors->has('requiriments') ? 'has-error' : '' }}">
+                                        <label for="requiriments">Requisitos</label>
+                                        <input type="text" class="form-control" name="requiriments" id="requiriments" value="{{ old('requiriments') }}">
+                                        @if ($errors->has('requiriments'))
+                                            <span class="help-block">{{ $errors->first('requiriments') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -93,7 +92,6 @@
                                         @endif
                                     </div>
                                 </div>
-                                       </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group {{ $errors->has('exceptions') ? 'has-error' : '' }}">
@@ -130,8 +128,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group {{ $errors->has('deadline') ? 'has-error' : '' }}">
-                                        <label for="deadline">Prazo</label>
-                                        <input type="text" class="form-control" name="deadline" id="deadline" value="{{ old('deadline') }}">
+                                        <label for="deadline">Tempo de execução</label>
+                                        <textarea class="form-control" name="deadline" id="deadline" value="{{ old('deadline') }}"></textarea>
                                         @if ($errors->has('deadline'))
                                             <span class="help-block">{{ $errors->first('deadline') }}</span>
                                         @endif
@@ -196,7 +194,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group {{ $errors->has('expiration') ? 'has-error' : '' }}">
-                                        <label for="expiration">Expiração</label>
+                                        <label for="expiration">Validade</label>
                                         <input type="text" class="form-control" name="expiration" id="expiration" value="{{ old('expiration') }}">
                                         @if ($errors->has('expiration'))
                                             <span class="help-block">{{ $errors->first('expiration') }}</span>
@@ -218,11 +216,207 @@
                 </form>
                 </div>
 
-        </section>
+            </div></section>
     </div>
 @endsection
 
 @section('scripts')
     <script src="{{ asset('assets/js/plugins/tinymce/tinymce.min.js') }}"></script>
-    <script src="{{ asset('assets/dashboard/js/blog.js') }}"></script>
+    <script>
+        tinymce.init(
+            {
+                selector: 'textarea',
+                height: 200,
+                menubar: false,
+                language: 'pt_BR',
+                table_grid: false,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor textcolor image',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code help wordcount'
+                ],
+                toolbar: 'insert | undo redo | formatselect | bold italic backcolor | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | help',
+                images_upload_base_path: url + '/',
+                images_upload_handler: function (blobInfo, success, failure) {
+                    var xhr, formData;
+
+                    xhr = new XMLHttpRequest();
+                    xhr.withCredentials = false;
+                    xhr.open('POST', '/dashboard/blog/image/upload');
+
+                    xhr.onload = function() {
+                        var json;
+
+                        if (xhr.status != 200) {
+                            failure('HTTP Error: ' + xhr.status);
+                            return;
+                        }
+
+                        json = JSON.parse(xhr.responseText);
+
+                        if (!json || typeof json.location != 'string') {
+                            failure('Invalid JSON: ' + xhr.responseText);
+                            return;
+                        }
+
+                        success(json.location);
+                    };
+                    if(blobInfo.blob().size <= 2097152){
+
+                        formData = new FormData();
+
+                        formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
+                        formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+                        xhr.send(formData);
+
+                    }else{
+                        alert('Erro ao fazer upload (tamanho limite da imagem: 2MB). Recarregue a página.');
+                    }
+                },
+                content_css: [
+                    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                    '//www.tinymce.com/css/codepen.min.css'],
+
+            });
+
+
+            let table_description =
+                '<table style="background-color: #e2efda;">' +
+                '<table border="0" cellspacing="0" cellpadding="0" width="623"">' +
+                '<tr>\n' +
+                '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>#</strong></span></td>\n' +
+                '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Categoria</strong></span></td>\n' +
+                '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Descrição</strong></span></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '<tr>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '<td></td>\n' +
+                '</tr>\n' +
+                '</table>' ;
+
+        let table_deadline =
+            '<table style="background-color: #e2efda;  border: 1px solid black;">' +
+            '<table border="0" cellspacing="0" cellpadding="0" width="623"">' +
+            '<tr>\n' +
+            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>#</strong></span></td>\n' +
+            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>Categoria</strong></span></td>\n' +
+            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>Descrição</strong></span></td>\n' +
+            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>Dias de trabalho</strong></span></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>Dias de trabalho</strong></span></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '</table>' ;
+
+
+
+
+            $('#description').html(table_description);
+            $('#deadline').html(table_deadline);
+
+    </script>
 @endsection

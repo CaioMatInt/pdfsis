@@ -1,3 +1,12 @@
+#btn-insert {
+    height:20px;
+    width:125px;
+    font-size: 10px;
+    border-radius: 4px;
+    background-color: #e2efda;
+}
+
+
 .content-size{
     max-width: 980px;
 }

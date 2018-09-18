@@ -26,6 +26,9 @@
     @include('dashboard.inc.footer')
 
 </div>
+<script>
+    const url = "<?php echo e(url('/')); ?>"
+</script>
 <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/dashboard/js/adminlte.min.js') }}"></script>

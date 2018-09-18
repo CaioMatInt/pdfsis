@@ -94,7 +94,9 @@ class ContractController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Contract::find($id)->update($request->all());
+
+        return redirect()->route('contracts.index');
     }
 
     /**
@@ -173,41 +175,88 @@ class ContractController extends Controller
         $pagina3 = "
         <div class='retanguloverde'> &nbsp; 1.	Objeto – Serviço Solicitado</div>    
         <br><div class='texto'>
-        <p>Desenvolvimento do novo site institucional da CRIAH.</p>
-        <p>Premissas:</p>
-        <p>Site em Wordpress gerenciável.</p>
-        <p>Endereço do Wireframe:</p>
-        <p>https://xd.adobe.com/spec/9e8635a7-8bae-41b2-6af0-c7470b4c06e7-e8b7/</p>
-
-        
-        
+        $contract->object
         </div><br>
         
         <br><div class='retanguloverde'> &nbsp; 2.	Descrição do Serviço </div><br>
         
+        <br><div class='texto'>
+        $contract->description
+        </div><br>
+        
         <br><div class='retanguloverde'> &nbsp; 3.	Pré requisitos  </div><br>
+        
+        <br><div class='texto'>
+        $contract->requiriments
+        </div><br>
         
         <br><div class='retanguloverde'> &nbsp; 4.	Exceções </div><br>
         
+        <br><div class='texto'>
+        $contract->exceptions
+        </div><br>
+        
         <br><div class='retanguloverde'> &nbsp; 5.	Adicional </div><br>
+        
+        <br><div class='texto'>
+        $contract->additional
+        </div><br>
         
         <br><div class='retanguloverde'> &nbsp; 6.	Equipe de Trabalho </div><br>
         
+        <br><div class='texto'>
+        $contract->team
+        </div><br>
+        
         <br><div class='retanguloverde'> &nbsp; 7.	Tempo de Execução </div><br>
+        
+        <br><div class='texto'>
+        $contract->deadline
+        </div><br>
         
         <br><div class='retanguloverde'> &nbsp; 8.	Valor </div><br>
         
+        <br><div class='texto'>
+        $contract->budget
+        </div><br>
+        
         <br><div class='retanguloverde'> &nbsp; 9.	Forma de Pagamento </div><br>
+        
+        <br><div class='texto'>
+        $contract->payment_options
+        </div><br>
         
         <br><div class='retanguloverde'> &nbsp; 10.	Manutenção após entrega </div><br>
         
+        <br><div class='texto'>
+        $contract->maintenance
+        </div><br>
+        
         <br><div class='retanguloverde'> &nbsp; 11.	Infraestrutura (Hospedagem) </div><br>
+        
+        <br><div class='texto'>
+        $contract->infra
+        </div><br>
         
         <br><div class='retanguloverde'> &nbsp; 12.	CDN (Content Delivery Network) </div><br>
         
+        <br><div class='texto'>
+        $contract->sustentation
+        </div><br>
+        
         <br><div class='retanguloverde'> &nbsp; 13.	Sustentação </div><br>
         
+        <br><div class='texto'>
+        <p>A utilização de CDN é recomendável para todos os sites, proporcionando performance e redução de custos com os players. Segue abaixo dois orçamentos para cada site:</p>
+        <p><strong>CDN – Every System</strong> R$ 59.99/mês></p>
+        <p><strong>Amazon CloudFront</strong> USD: 120.90/mês </p>
+        </div><br>
+        
         <br><div class='retanguloverde'> &nbsp; 14.	Validade </div><br>
+        
+        <br><div class='texto'>
+        $contract->expiration
+        </div><br>
         
         ";
 
