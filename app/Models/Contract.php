@@ -8,8 +8,7 @@ class Contract extends Model
 {
     protected $table = 'contracts';
 
-    protected $fillable = ['id', 'client_id', 'title', 'area', 'object', 'description', 'requiriments', 'exceptions', 'additional',
-    'team', 'deadline', 'budget', 'payment_options', 'maintenance', 'infra', 'sustentation', 'expiration', 'image'];
+    protected $fillable = ['id', 'client_id', 'title', 'area', 'proposal', 'image'];
 
     public function contract()
     {

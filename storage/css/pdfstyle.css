@@ -1,3 +1,8 @@
+table{
+    page-break-inside:avoid;
+
+}
+
 html,body{
     margin-top: 0cm;
     padding: 0;

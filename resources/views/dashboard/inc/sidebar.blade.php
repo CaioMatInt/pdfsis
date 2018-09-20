@@ -11,21 +11,21 @@
         <ul class="sidebar-menu" data-widget="tree">
             <li class="header">Navegação</li>
             <li class="treeview">
-                <a href="{{ route('admin.home') }}">
-                    <i class="fa fa-home"></i>
+            <li><a href="{{ route('admin.home') }}">  <i class="fa fa-home"></i>
                     <span>Home</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="{{ route('clients.index') }}">
-                    <i class="fa fa-plus"></i> <span>Cadadsfdsstro de cliente</span>
+                <li class="treeview">
+            <li><a href="{{ route('clients.index') }}">  <i class="fa fa-user"></i>
+                    <span>Clientes</span>
                 </a>
             </li>
-            <li class="treeview">
-                <a href="{{ route('admin.home') }}">
-                    <i class="fa fa-plus"></i> <span>Cadastro de contratos</span>
+                <li class="treeview">
+            <li><a href="{{ route('contracts.index') }}">  <i class="fa fa-file-o"></i>
+                    <span>Propostas Comerciais</span>
                 </a>
             </li>
+
         </ul>
     </section>
 </aside>

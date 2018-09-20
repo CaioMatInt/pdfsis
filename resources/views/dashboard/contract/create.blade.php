@@ -3,6 +3,7 @@
 @section('pageTitle', $pageTitle)
 
 @section('content')
+
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
@@ -32,172 +33,27 @@
                                     <span class="help-block">{{ $errors->first('client_id') }}</span>
                                 @endif
                             </div>
-                                <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-                                        <label for="title">Título</label>
-                                        <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
-                                        @if ($errors->has('title'))
-                                            <span class="help-block">{{ $errors->first('title') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                                </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
-                                        <label for="area">Area</label>
-                                        <input type="text" class="form-control" name="area" id="area" value="{{ old('area') }}">
-                                        @if ($errors->has('area'))
-                                            <span class="help-block">{{ $errors->first('area') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
+                            <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
+                                <label for="title">Título</label>
+                                <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+                                @if ($errors->has('title'))
+                                    <span class="help-block">{{ $errors->first('client_id') }}</span>
+                                @endif
                             </div>
-                            <div class="form-group {{ $errors->has('object') ? 'has-error' : '' }}">
-                                <label for="object">Objeto</label>
-                                <textarea class="form-control" name="object" id="object">{{ old('object') }}</textarea>
-                                @if ($errors->has('object'))
-                                    <span class="help-block">{{ $errors->first('object') }}</span>
+                            <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
+                                <label for="title">Área</label>
+                                <input type="text" class="form-control" name="area" id="area" value="{{ old('area') }}">
+                                @if ($errors->has('area'))
+                                    <span class="help-block">{{ $errors->first('area') }}</span>
                                 @endif
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                                        <label for="description">Descricao</label>
-                                        <textarea class="form-control" name="description" id="description" value="{{ old('description') }}"></textarea>
-                                        @if ($errors->has('description'))
-                                            <span class="help-block">{{ $errors->first('description') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('requiriments') ? 'has-error' : '' }}">
-                                        <label for="requiriments">Requisitos</label>
-                                        <input type="text" class="form-control" name="requiriments" id="requiriments" value="{{ old('requiriments') }}">
-                                        @if ($errors->has('requiriments'))
-                                            <span class="help-block">{{ $errors->first('requiriments') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                                <div class="col-md-4">
-                                    <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
-                                        <label for="image">Imagem</label>
-                                        <input type="file" class="form-control" name="image" id="image">
-                                        @if ($errors->has('image'))
-                                            <span class="help-block">{{ $errors->first('image') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('exceptions') ? 'has-error' : '' }}">
-                                        <label for="exceptions">Excessões</label>
-                                        <input type="text" class="form-control" name="exceptions" id="exceptions" value="{{ old('exceptions') }}">
-                                        @if ($errors->has('exceptions'))
-                                            <span class="help-block">{{ $errors->first('exceptions') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('additional') ? 'has-error' : '' }}">
-                                        <label for="additional">Adicional</label>
-                                        <input type="text" class="form-control" name="additional" id="additional" value="{{ old('additional') }}">
-                                        @if ($errors->has('additional'))
-                                            <span class="help-block">{{ $errors->first('additional') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('team') ? 'has-error' : '' }}">
-                                        <label for="team">Time</label>
-                                        <input type="text" class="form-control" name="team" id="team" value="{{ old('team') }}">
-                                        @if ($errors->has('team'))
-                                            <span class="help-block">{{ $errors->first('team') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('deadline') ? 'has-error' : '' }}">
-                                        <label for="deadline">Tempo de execução</label>
-                                        <textarea class="form-control" name="deadline" id="deadline" value="{{ old('deadline') }}"></textarea>
-                                        @if ($errors->has('deadline'))
-                                            <span class="help-block">{{ $errors->first('deadline') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('budget') ? 'has-error' : '' }}">
-                                        <label for="budget">Orçamento</label>
-                                        <input type="text" class="form-control" name="budget" id="budget" value="{{ old('budget') }}">
-                                        @if ($errors->has('budget'))
-                                            <span class="help-block">{{ $errors->first('budget') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('payment_options') ? 'has-error' : '' }}">
-                                        <label for="payment_options">Opções de pagamento</label>
-                                        <input type="text" class="form-control" name="payment_options" id="payment_options" value="{{ old('payment_options') }}">
-                                        @if ($errors->has('payment_options'))
-                                            <span class="help-block">{{ $errors->first('payment_options') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('maintenance') ? 'has-error' : '' }}">
-                                        <label for="maintenance">Manutenção</label>
-                                        <input type="text" class="form-control" name="maintenance" id="maintenance" value="{{ old('maintenance') }}">
-                                        @if ($errors->has('maintenance'))
-                                            <span class="help-block">{{ $errors->first('maintenance') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('infra') ? 'has-error' : '' }}">
-                                        <label for="infra">Infraestrutura</label>
-                                        <input type="text" class="form-control" name="infra" id="infra" value="{{ old('infra') }}">
-                                        @if ($errors->has('infra'))
-                                            <span class="help-block">{{ $errors->first('infra') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('sustentation') ? 'has-error' : '' }}">
-                                        <label for="sustentation">Sustentação</label>
-                                        <input type="text" class="form-control" name="sustentation" id="sustentation" value="{{ old('sustentation') }}">
-                                        @if ($errors->has('sustentation'))
-                                            <span class="help-block">{{ $errors->first('sustentation') }}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group {{ $errors->has('expiration') ? 'has-error' : '' }}">
-                                        <label for="expiration">Validade</label>
-                                        <input type="text" class="form-control" name="expiration" id="expiration" value="{{ old('expiration') }}">
-                                        @if ($errors->has('expiration'))
-                                            <span class="help-block">{{ $errors->first('expiration') }}</span>
+                                    <div class="form-group {{ $errors->has('proposal') ? 'has-error' : '' }}">
+                                        <label for="proposal">Proposta Comercial</label>
+                                        <textarea class="form-control" name="proposal" id="proposal" value="{{ old('proposal') }}"></textarea>
+                                        @if ($errors->has('proposal'))
+                                            <span class="help-block">{{ $errors->first('proposal') }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -208,25 +64,446 @@
                                     <button type="button" class="btn btn-default btn-flat btn-tab-back btn-history-back">
                                         <i class="fa fa-arrow-left"></i> Cancelar
                                     </button>
+                                    <button type="button" class="btn btn-success" onclick="initContract()"><i class="glyphicon glyphicon-file"></i>Gerar Layout de Proposta Comercial </button>
                                     <button type="submit" class="btn btn-success btn-flat float-right">
                                         <i class="fa fa-save"></i> Salvar
                                     </button>
                                 </div>
                             </div>
                 </form>
-                </div>
+                         </div>
 
             </div></section>
-    </div>
+        </div>
 @endsection
 
 @section('scripts')
     <script src="{{ asset('assets/js/plugins/tinymce/tinymce.min.js') }}"></script>
     <script>
+
+        function initContract(){
+            let title = document.getElementById("title").value;
+        let layout = '<br><br><div style="margin-left: 1.25cm;\n' +
+            'margin-right: 1.25cm;\n' +
+            'size: A4;\n' +
+            'width: 21cm;\n' +
+            'height: 29.7cm;"><br><div style="text-align:center;\n' +
+            'font-family:Lucida Sans Unicode;\n' +
+            'font-size:20pt;\n' +
+            'font-weight:bold;">PROPOSTA COMERCIAL</div>'+
+            '<div style="    width: 374px;\n' +
+            'height: 120px;\n' +
+            'background-color: blue;">Insira o logo da empresa aqui</div>'+
+            '<p style="text-align:center;\n' +
+            'font-family:Lucida Sans Unicode;\n' +
+            'font-size:16pt;\n' +
+            'font-weight:bold;">' + title + '</p>'+
+            '<div style="height: 175px;"></div>'+
+            '<br>'+
+            'A/C'+
+            '<div style="line-height: 0.5;"><p><strong>Razão social:</strong> <?php echo "$client->company"; ?></p>'+
+            '<p><strong>CNPJ:</strong> <?php echo "$client->cnpj"; ?></p>'+
+            '<p><strong>Telefone:</strong> <?php echo "$client->phone"; ?></p>'+
+            '<p><strong>Endereço:</strong> <?php echo "$client->address"; ?></p>'+
+            '<p><strong>Nome do contato:</strong> <?php echo "$client->contact_name"; ?></p>'+
+            '<p><strong>E-mail:</strong> <?php echo "$client->email"; ?></p>'+
+            '</div>'+
+            '</div> '+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 1.	Objeto – Serviço Solicitado</div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Insira o Objeto aqui'+
+            '</div><br>' +
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> ' +
+            '&nbsp; 2. Descrição do Serviço</div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Insira a Descrição aqui'+
+            '</div><br>' +
+
+            '<div><table style="width: 100%;font-size: 14px; margin: 0px auto; background-color: #e2efda;">' +
+            '<table border="0" cellspacing="0" cellpadding="0" width="623"">' +
+            '<thead><tr>\n' +
+            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>#</strong></span></td>\n' +
+            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Categoria</strong></span></td>\n' +
+            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Descrição</strong></span></td>\n' +
+            '</thead></tr>\n' +
+            '<tbody><tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr></tbody>\n' +
+            '</table></div>'+
+            '<br>' +
+            '<pagebreak />'+
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 3.\tPré requisitos  </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Insira os pré-requisitos aqui'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 4.\tExceções </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Não está contemplado nesta proposta: '+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;">&nbsp; 5.\tAdicional</div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Não há.'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;">&nbsp; 6.\tEquipe de Trabalho</div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Neste projeto estarão envolvidos a seguinte equipe:'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 7.\tTempo de Execução </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'O sistema será implementado em até <strong>X</strong> dias úteis após o início, considerando o desenvolvimento em paralelo com a equipe listada no item anterior.<br>\n' +
+            '\n' +
+            '<br>Para melhor entendimento, segue abaixo a estimativa de trabalho por atividade:\n'+
+            '</div><br>' +
+
+            '<div><table style="width: 100%;font-size: 14px;margin: 0px auto; background-color: #e2efda;">' +
+            '<table border="0" cellspacing="0" cellpadding="0" width="623"">' +
+            '<tr>\n' +
+            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>#</strong></span></td>\n' +
+            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Categoria</strong></span></td>\n' +
+            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Descrição</strong></span></td>\n' +
+            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Dias de trabalho</strong></span></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '<tr>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '<td></td>\n' +
+            '</tr>\n' +
+            '</table></div><br>'+
+            '<pagebreak />'+
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;">&nbsp; 8.\tValor </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Insira o valor aqui'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 9.\tForma de Pagamento   </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'A.\tÀ vista: com 5% de desconto.<br><br>\n' +
+            '\n' +
+            'B.\tParcelado em até 03 vezes, sendo: 10, 30 e 60 dias após o aceite.\n'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 10.\tManutenção após entrega  </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Não está contemplado no escopo desta etapa.'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 11.\tInfraestrutura (Hospedagem)  </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Não está contemplado no escopo desta etapa.'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 12.\tCDN (Content Delivery Network)  </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'INSERIR CDN FIXOAQUI'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 13.\tSustentação </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Não está contemplado no escopo desta etapa.'+
+            '</div><br>' +
+
+            '<div style=" margin-left: 1.25cm;'+
+            'margin-right: 1.25cm;'+
+            'background-color: #00b050;'+
+            'color: #ffffff;'+
+            'border-style: solid;'+
+            'border-width: 1px;'+
+            'font-size: 16px;'+
+            'height: 30px;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-weight:bold;'+
+            'line-height:30px;"> &nbsp; 14.\tValidade  </div>'+
+            '<br><div style="margin-left: 1.65cm;'+
+            'margin-right: 1.65cm;'+
+            'font-family:Lucida Sans Unicode;'+
+            'font-size: 13.5px;">'+
+            'Esta proposta tem validade de 30 dias da data do seu envio.'+
+            '</div><br>' ;
+
+
+
+
         tinymce.init(
             {
                 selector: 'textarea',
-                height: 200,
+                height: 800,
                 menubar: false,
                 language: 'pt_BR',
                 table_grid: false,
@@ -278,145 +555,15 @@
                     '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                     '//www.tinymce.com/css/codepen.min.css'],
 
+                setup: function (editor) {
+                    editor.on('init', function () {
+                        this.setContent(layout);
+                    });
+                }
+
             });
 
-
-            let table_description =
-                '<table style="background-color: #e2efda;">' +
-                '<table border="0" cellspacing="0" cellpadding="0" width="623"">' +
-                '<tr>\n' +
-                '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>#</strong></span></td>\n' +
-                '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Categoria</strong></span></td>\n' +
-                '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Descrição</strong></span></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '<tr>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '<td></td>\n' +
-                '</tr>\n' +
-                '</table>' ;
-
-        let table_deadline =
-            '<table style="background-color: #e2efda;  border: 1px solid black;">' +
-            '<table border="0" cellspacing="0" cellpadding="0" width="623"">' +
-            '<tr>\n' +
-            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>#</strong></span></td>\n' +
-            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>Categoria</strong></span></td>\n' +
-            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>Descrição</strong></span></td>\n' +
-            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>Dias de trabalho</strong></span></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td style="border: 1px solid black;background-color: #548235;"><span style="color: #ffffff;"><strong>Dias de trabalho</strong></span></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '</table>' ;
-
-
-
-
-            $('#description').html(table_description);
-            $('#deadline').html(table_deadline);
+        }
 
     </script>
 @endsection

@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $data = [
-            'pageTitle' => 'ES'
+            'pageTitle' => 'Dashboard'
         ];
 
         return view('dashboard.home', $data);

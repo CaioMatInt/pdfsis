@@ -234,120 +234,12 @@
                 'insertdatetime media table contextmenu paste code help wordcount'
             ],
             toolbar: 'insert | undo redo | formatselect | bold italic backcolor | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | help',
-            images_upload_base_path: url + '/',
-            images_upload_handler: function (blobInfo, success, failure) {
-                var xhr, formData;
-
-                xhr = new XMLHttpRequest();
-                xhr.withCredentials = false;
-                xhr.open('POST', '/dashboard/blog/image/upload');
-
-                xhr.onload = function() {
-                    var json;
-
-                    if (xhr.status != 200) {
-                        failure('HTTP Error: ' + xhr.status);
-                        return;
-                    }
-
-                    json = JSON.parse(xhr.responseText);
-
-                    if (!json || typeof json.location != 'string') {
-                        failure('Invalid JSON: ' + xhr.responseText);
-                        return;
-                    }
-
-                    success(json.location);
-                };
-                if(blobInfo.blob().size <= 2097152){
-
-                    formData = new FormData();
-
-                    formData.append('_token', $('meta[name="csrf-token"]').attr('content'));
-                    formData.append('file', blobInfo.blob(), blobInfo.filename());
-
-                    xhr.send(formData);
-
-                }else{
-                    alert('Erro ao fazer upload (tamanho limite da imagem: 2MB). Recarregue a página.');
-                }
-            },
             content_css: [
                 '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
                 '//www.tinymce.com/css/codepen.min.css'],
 
         });
 
-            function insertTableObject() {
-            let value = $('#object').html();
-            let table =
-            '<table style="border-style: dotted; background-color: #e2efda;">' +
-            '<table border="0" cellspacing="0" cellpadding="0" width="623"">' +
-            '<tr>\n' +
-            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>#</strong></span></td>\n' +
-            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Categoria</strong></span></td>\n' +
-            '<td style="background-color: #548235;"><span style="color: #ffffff;"><strong>Descrição</strong></span></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '<tr>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '<td></td>\n' +
-            '</tr>\n' +
-            '</table>' ;
-             let res = value.concat(table);
-             $('#object').html(res); }
-
-
-             insertTableObject();
-
-        $( "#btn-insert" ).click(function() {
-           // insertTableObject();
-        });
 
     </script>
 @endsection

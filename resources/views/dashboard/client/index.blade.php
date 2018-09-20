@@ -60,11 +60,22 @@
                                            data-placement="top">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>
-                                        <button type="button" class="btn btn-default btn-flat btn-delete-email"
+                                        <button type="button" class="btn btn-default btn-flat btn-delete"
                                                 data-url="{{ route('clients.destroy', $row->id) }}"
                                                 data-toggle="tooltip" title="Excluir" data-placement="top">
                                             <i class="fa fa-trash text-danger"></i>
                                         </button>
+                                        <?php $clientArray = array("id" => $row->id,"company" => $row->company,
+                                            "cnpj" => $row->cnpj, "phone" => $row->phone, "address" => $row->address,
+                                            "contact_name" => $row->contact_name, "email" => $row->email);
+                                       // $clientArray=serialize($clientArray);
+                                        //dd($clientArray);
+                                        ?>
+                                        <a href="{{ route('contracts.create', $clientArray) }}"
+                                           class="btn btn-success" data-toggle="tooltip" title="Criar Proposta Comercial"
+                                           data-placement="top">
+                                            <i class="glyphicon glyphicon-file"></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

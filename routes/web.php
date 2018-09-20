@@ -34,6 +34,7 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     Route::resource('contracts', 'ContractController', ['as' => ''])->except(['show']);
     Route::get('contracts/print{id}', 'ContractController@print')->name('contracts.print');
     Route::get('teste', 'ContractController@teste')->name('contracts.teste');
+    Route::get('contracts/create','ContractController@create')->name('contracts.create');
 
 
 });

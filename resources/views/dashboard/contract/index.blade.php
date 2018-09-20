@@ -18,13 +18,6 @@
             <div class="box">
                 <div class="box-header with-border">
                     <h4 class="box-title">Contratos cadastrados</h4>
-                    <div class="pull-right box-tools">
-                        <a href="{{ route('contracts.create') }}">
-                            <button class="btn btn-flat btn-success btn-block">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Criar novo contrato
-                            </button>
-                        </a>
-                    </div>
                 </div>
                 <div class="box-body">
                     @if(session('msg'))
