@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Contract;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -108,6 +109,9 @@ class ContractController extends Controller
      */
     public function destroy($id)
     {
+
+        $this->authorize('delete', Contract::class);
+
         //TODO: INSERIR UM TRY CATCH, POIS MSG RECEBE ANTES A CONFIRMAÇÃO
 
         $contracts = Contract::find($id);

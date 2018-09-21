@@ -20,16 +20,34 @@ class UserController extends Controller
         return view('dashboard/user/index', $data);
     }
 
+    public function listAll()
+    {
+        $this->authorize('delete', Contract::class);
+        $data = [
+            'pageTitle' => 'Usuários Cadastrados',
+            'users' => User::paginate(30) ];
+
+        return view('dashboard.user.listAll', $data);
+    }
+
     /**
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
+        if ($id == NULL){
         $data = [
-            'pageTitle' => 'Minha conta',
+            'pageTitle' => 'Edição de usuário',
             'user' => auth()->user()
-        ];
+        ]; }
+        else {
+            $data = [
+                'pageTitle' => 'Edição de usuário',
+                'user' => $usuario = User::find($id)
+            ];
+        }
+
         return view('dashboard/user/edit', $data);
     }
 
@@ -45,13 +63,14 @@ class UserController extends Controller
             'email' => 'required|string|email'
         ]);
 
+        if(auth()->user()->type != 'admin'){
         if(auth()->user()->user_id != $id){
             $msg = [
                 'type' => 'danger',
                 'text' => 'Erro'
             ];
             return redirect()->route('user.index')->with('msg', $msg);
-        }
+        } }
 
         try{
 
@@ -70,8 +89,11 @@ class UserController extends Controller
                 'text' => 'Erro ao atualizar usuário'
             ];
         }
-
-        return redirect()->route('user.index')->with('msg', $msg);
+        if(auth()->user()->type != 'admin'){
+        return redirect()->route('user.index')->with('msg', $msg);}
+        else {
+            return redirect()->route('user.listAll')->with('msg', $msg);
+        }
     }
 
     /**
@@ -123,4 +145,47 @@ class UserController extends Controller
         }
         return redirect()->route('user.index')->with('msg', $msg);
     }
+
+    public function destroy($id){
+        try {
+            $user = User::find($id);
+            $user->delete();
+
+            $msg = [
+                'type' => 'success',
+                'text' => 'Usuário removido com sucesso.'
+            ];
+        } catch(Exception $e){
+            $msg = [
+                'type' => 'danger',
+                'text' => 'Erro ao remover'
+            ];
+        }
+
+        return redirect()->route('user.index')->with('msg', $msg);
+    }
+
+    public function create(){
+
+        $data = [
+            'pageTitle' => 'Criar novo usuário',
+        ];
+
+        return view('dashboard.user.create', $data);
+    }
+    public function store(Request $request){
+
+        User::create($request->all());
+
+        $msg = [
+            'type' => 'success',
+            'text' => 'Usuário criado'
+        ];
+
+        return view('dashboard.user.create', $msg);
+    }
+
+
+
+
 }

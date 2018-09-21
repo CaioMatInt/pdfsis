@@ -10,8 +10,8 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{ route('admin.home') }}"><i class="fa fa-home"></i> Home</a></li>
-                <li><a href="{{ route('user.index') }}">Minha conta</a></li>
-                <li class="active">atualizar informações</li>
+                <li><a href="{{ route('user.listAll') }}">Usuários do sistema</a></li>
+                <li class="active">Cadastrar Novo Usuário</li>
             </ol>
         </section>
         <section class="content">
@@ -20,15 +20,15 @@
                     <div class="box-body">
                         <div class="box box-primary">
                             <div class="box-body box-profile">
-                                <h3 class="box-title">Atualizar informações</h3>
-                                <form action="{{ route('user.update', $user) }}" method="POST">
+                                <h3 class="box-title">Criar usuário</h3>
+                                <form action="{{ route('user.store', $user) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="name">Nome</label>
-                                                <input class="form-control" name="name" id="name" type="text" value="{{ $user->name }}">
+                                                <input class="form-control" name="name" id="name" type="text">
                                                 @if ($errors->has('name'))
                                                     <p class="text-danger">
                                                         <strong>{{ $errors->first('name') }}</strong>
@@ -41,7 +41,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="email">E-mail</label>
-                                                <input class="form-control" name="email" id="email" type="email" value="{{ $user->email }}">
+                                                <input class="form-control" name="email" id="email" type="email">
                                                 @if ($errors->has('email'))
                                                     <p class="text-danger">
                                                         <strong>{{ $errors->first('email') }}</strong>
@@ -54,7 +54,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="type">Tipo de usuário:</label>
-                                                <input class="form-control" name="type" id="type" type="text" value="{{ $user->type }}">
+                                                <input class="form-control" name="type" id="type" type="text">
                                                 @if ($errors->has('type'))
                                                     <p class="text-danger">
                                                         <strong>{{ $errors->first('type') }}</strong>

@@ -25,6 +25,13 @@
                     <span>Propostas Comerciais</span>
                 </a>
             </li>
+            @can('delete', App\Models\User::class)
+            <li class="treeview">
+            <li><a href="{{ route('user.listAll') }}">  <i class="fa fa-users"></i>
+                    <span>Usuários do sistema</span>
+                </a>
+            </li>
+            @endcan
 
         </ul>
     </section>

@@ -28,7 +28,7 @@
                             {{ @csrf_field() }}
                             <div class="form-group {{ $errors->has('client_id') ? 'has-error' : '' }}">
                                 <label for="client_id">Client_ID</label>
-                                <input type="number" class="form-control" name="client_id" id="client_id" value="{{ old('client_id') }}">
+                                <input type="number" class="form-control" name="client_id" id="client_id" value="{{$client->id}}">
                                 @if ($errors->has('client_id'))
                                     <span class="help-block">{{ $errors->first('client_id') }}</span>
                                 @endif

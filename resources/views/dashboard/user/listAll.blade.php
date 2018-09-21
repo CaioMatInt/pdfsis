@@ -11,13 +11,20 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="{{ route('admin.home') }}"><i class="fa fa-home"></i> Home</a></li>
-                <li class="active">Contratos cadastrados</li>
+                <li class="active">Usuários cadastrados</li>
             </ol>
         </section>
         <section class="content">
             <div class="box">
                 <div class="box-header with-border">
-                    <h4 class="box-title">Contratos cadastrados</h4>
+                    <h4 class="box-title">Usuários cadastrados</h4>
+                    <div class="pull-right box-tools">
+                        <a href="{{ route('user.create') }}">
+                            <button class="btn btn-flat btn-success btn-block">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Criar novo usuário
+                            </button>
+                        </a>
+                    </div>
                 </div>
                 <div class="box-body">
                     @if(session('msg'))
@@ -29,40 +36,32 @@
                         <tbody>
                         <tr>
                             <th style="width: 10px">#</th>
-                            <th>Cliente_ID</th>
-                            <th>Título</th>
-                            <th>Area</th>
-                            <th>Valor</th>
-                            <th>Prazo</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Tipo</th>
+                            <th></th>
                             <th class="text-center">Ações</th>
                         </tr>
-                        @foreach($contracts as $row)
+                        @foreach($users as $user)
                             <tr>
-                                <td>{{ $row->id }}</td>
-                                <td>{{ $row->client_id }}</td>
-                                <td>{{ $row->title }}</td>
-                                <td>{{ $row->area }}</td>
-                                <td>{{ $row->budget }}</td>
-                                <td>{{ $row->deadline }}</td>
+                                <td>{{ $user->user_id }}</td>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->type }}</td>
+                                <?php if ($user->type == 'admin') {  ?><td>	<center><i class="glyphicon glyphicon-sunglasses" ></i></center></td> <?php } ?>
+                                <?php if ($user->type == 'common') {  ?><td>	<center><i class="fa fa-user" ></i></center></td> <?php } ?>
                                 <td class="text-center" style="width: 180px;">
                                     <div class="btn-group">
-                                        <a href="{{ route('contracts.edit', $row->id) }}"
+                                        <a href="{{ route('user.edit', $user->user_id) }}"
                                            class="btn btn-default btn-flat" data-toggle="tooltip" title="Editar"
                                            data-placement="top">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>
-                                        @can('delete', App\Models\Contract::class)
-                                        <button type="button" class="btn btn-default btn-flat btn-delete-contract"
-                                                data-url="{{ route('contracts.destroy', $row->id) }}"
+                                        <button type="button" class="btn btn-default btn-flat btn-delete-user"
+                                                data-url="{{ route('user.destroy', $user->user_id) }}"
                                                 data-toggle="tooltip" title="Excluir" data-placement="top">
                                             <i class="fa fa-trash text-danger"></i>
                                         </button>
-                                        @endcan
-                                        <a href="{{ route('contracts.print', $row->id) }}"
-                                           class="btn btn-default btn-flat" data-toggle="tooltip" title="Gerar PDF"
-                                           data-placement="top" target="_blank">
-                                            <i class="fa fa-print"></i>
-                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -78,11 +77,11 @@
 
 @section('scripts')
     <script>
-        $('.btn-delete-contract').click(function () {
+        $('.btn-delete-user').click(function () {
 
             swal({
                 title: '',
-                text: 'Esta ação irá excluir o contrato selecionado, deseja continuar?',
+                text: 'Esta ação irá excluir o usuário selecionado, deseja continuar?',
                 icon: 'warning',
                 buttons: true,
                 dangerMode: true,

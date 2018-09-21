@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->increments('user_id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('type');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
@@ -28,6 +29,15 @@ class CreateUsersTable extends Migration
             'name' => 'Dev',
             'email' => 'developer@everysystem.com.br',
             'password' => bcrypt('@every1'),
+            'type' => 'admin',
+            'created_at' => DB::raw('CURRENT_TIMESTAMP'),
+            'updated_at' => DB::raw('CURRENT_TIMESTAMP')
+        ]);
+           DB::table('users')->insert([
+            'name' => 'Usuario comum',
+            'email' => 'comum@comum.com',
+            'password' => bcrypt('123456'),
+            'type' => 'common',
             'created_at' => DB::raw('CURRENT_TIMESTAMP'),
             'updated_at' => DB::raw('CURRENT_TIMESTAMP')
         ]);

@@ -60,11 +60,13 @@
                                            data-placement="top">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>
-                                        <button type="button" class="btn btn-default btn-flat btn-delete"
+                                        @can('delete', App\Models\Client::class)
+                                        <button type="button" class="btn btn-default btn-flat btn-delete-client"
                                                 data-url="{{ route('clients.destroy', $row->id) }}"
                                                 data-toggle="tooltip" title="Excluir" data-placement="top">
                                             <i class="fa fa-trash text-danger"></i>
                                         </button>
+                                        @endcan
                                         <?php $clientArray = array("id" => $row->id,"company" => $row->company,
                                             "cnpj" => $row->cnpj, "phone" => $row->phone, "address" => $row->address,
                                             "contact_name" => $row->contact_name, "email" => $row->email);
@@ -90,24 +92,24 @@
 @endsection
 
 @section('scripts')
-<script>
-    $('.btn-delete-email').click(function () {
 
-        swal({
-            title: '',
-            text: 'Esta ação irá excluir o cliente selecionado, deseja continuar?',
-            icon: 'warning',
-            buttons: true,
-            dangerMode: true,
-            buttons: ['Cancelar', 'Excluir'],
-        })
-            .then((willDelete) => {
-                if (willDelete) {
-                    createDynamicForm($(this).data('url'), 'DELETE', true);
-                }
-                swal.close();
-            });
-    });
-</script>
+    <script>
+        $('.btn-delete-client').click(function () {
 
+            swal({
+                title: '',
+                text: 'Esta ação irá excluir a notícia selecionada, deseja continuar?',
+                icon: 'warning',
+                buttons: true,
+                dangerMode: true,
+                buttons: ['Cancelar', 'Excluir'],
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        createDynamicForm($(this).data('url'), 'DELETE', true);
+                    }
+                    swal.close();
+                });
+        });
+    </script>
 @endsection

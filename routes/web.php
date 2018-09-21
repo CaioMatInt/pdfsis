@@ -26,7 +26,11 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     // user
     Route::get('user/edit/password', 'User\UserController@editPassword')->name('user.edit.password');
     Route::put('user/password/{user}', 'User\UserController@updatePassword')->name('user.update.password');
+    Route::put('user/destroy/{user}', 'User\UserController@destroy')->name('user.destroy');
+    Route::put('user/create', 'User\UserController@create')->name('user.create');
+    Route::post('user/store', 'User\UserController@store')->name('user.store');
     Route::resource('user', 'User\UserController', ['only' => ['index', 'edit', 'update']]);
+    Route::get('users','User\UserController@listAll')->name('user.listAll');
 
     //client
     //Route::get('clientes', 'ClientController@index')->name('contract.index');
@@ -37,4 +41,11 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     Route::get('contracts/create','ContractController@create')->name('contracts.create');
 
 
+
+
+
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

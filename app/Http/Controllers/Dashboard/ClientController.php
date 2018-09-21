@@ -132,6 +132,8 @@ class ClientController extends Controller
     {
         //TODO: INSERIR UM TRY CATCH, POIS MSG RECEBE ANTES A CONFIRMAÇÃO
 
+        $this->authorize('delete', Client::class);
+
         $cliente = Client::find($id);
 
         $msg = [

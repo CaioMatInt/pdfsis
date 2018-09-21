@@ -1,7 +1,7 @@
 <header class="main-header">
     <a href="{{ route('admin.home') }}" class="logo">
         <span class="logo-mini"><b>E</b>A</span>
-        <img src='http://i64.tinypic.com/im2eth.png'><br>
+        <img src="{{url('images/every1.png')}}">
     </a>
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
