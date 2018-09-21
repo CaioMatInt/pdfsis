@@ -18,7 +18,7 @@ class CreateContractsTable extends Migration
             $table->unsignedInteger('client_id');
             $table->string('title', 255);
             $table->string('area', 255);
-
+            $table->float('budget');
             $table->mediumText('proposal');
 
             $table->string('image', 255)->nullable();

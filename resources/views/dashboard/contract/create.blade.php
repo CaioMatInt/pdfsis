@@ -42,11 +42,23 @@
                             </div>
                             <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
                                 <label for="title">Área</label>
-                                <input type="text" class="form-control" name="area" id="area" value="{{ old('area') }}">
+                                <select id="area" class="form-control" name="area"><option selected>Desenvolvimento</option>
+                                    <option>Infraestrutura</option>
+
+                                </select>
                                 @if ($errors->has('area'))
                                     <span class="help-block">{{ $errors->first('area') }}</span>
                                 @endif
                             </div>
+
+                            <div class="form-group {{ $errors->has('budget') ? 'has-error' : '' }}">
+                                <label for="budget">Valor</label>
+                                <input type="number" class="form-control" name="budget" id="budget" value="{{ old('budget') }}">
+                                @if ($errors->has('budget'))
+                                    <span class="help-block">{{ $errors->first('budget') }}</span>
+                                @endif
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group {{ $errors->has('proposal') ? 'has-error' : '' }}">
@@ -83,6 +95,7 @@
 
         function initContract(){
             let title = document.getElementById("title").value;
+            let budget = document.getElementById("budget").value;
         let layout = '<br><br><div style="margin-left: 1.25cm;\n' +
             'margin-right: 1.25cm;\n' +
             'size: A4;\n' +
@@ -384,7 +397,7 @@
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
             'font-size: 13.5px;">'+
-            'Insira o valor aqui'+
+            'R$' + budget +
             '</div><br>' +
 
             '<div style=" margin-left: 1.25cm;'+

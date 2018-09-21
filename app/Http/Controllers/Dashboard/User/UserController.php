@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function listAll()
     {
-        $this->authorize('delete', Contract::class);
+        $this->authorize('view', User::class);
         $data = [
             'pageTitle' => 'Usuários Cadastrados',
             'users' => User::paginate(30) ];

@@ -33,7 +33,7 @@
                             <th>Título</th>
                             <th>Area</th>
                             <th>Valor</th>
-                            <th>Prazo</th>
+                            <th>Data da criação</th>
                             <th class="text-center">Ações</th>
                         </tr>
                         @foreach($contracts as $row)
@@ -42,8 +42,8 @@
                                 <td>{{ $row->client_id }}</td>
                                 <td>{{ $row->title }}</td>
                                 <td>{{ $row->area }}</td>
-                                <td>{{ $row->budget }}</td>
-                                <td>{{ $row->deadline }}</td>
+                                <td>R$ {{ $row->budget }}</td>
+                                <td>{{ $row->created_at }}</td>
                                 <td class="text-center" style="width: 180px;">
                                     <div class="btn-group">
                                         <a href="{{ route('contracts.edit', $row->id) }}"

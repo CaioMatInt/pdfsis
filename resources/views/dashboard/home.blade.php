@@ -15,11 +15,12 @@
         </section>
 
         <section class="content">
+
             <div class="box">
                 <div class="box-header with-border">
 
-                    <div class="boxinitialpage">
-                        <div class="container">
+                    <div class="boxinitimalpage">
+                        <div class="container" style="width: 85% !important;">
                             <div class="row">
 
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -33,11 +34,10 @@
                                         </div>
 
                                         <div class="text">
-                                            <span>Gerenciar clientes / cadastrar novas propostas comercias</span>
+                                            <span>Gerenciar clientes / cadastrar propostas</span>
                                         </div>
                                         <br>
-
-                                        <button type="button" class="btn btn-success" href="{{ route('clients.index') }}">Acessar</button>
+                                        <a class="btn btn-success" href="{{ route('clients.index') }}">Acessar</a>
 
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                             <span>Gerenciar propostas comerciais cadastradas</span>
                                         </div>
                                         <br>
-                                        <button type="button" class="btn btn-success" href="{{ route('clients.index') }}">Acessar</button>
+                                        <a class="btn btn-success" href="{{ route('contracts.index') }}">Acessar</a>
 
                                     </div>
                                 </div>
@@ -75,11 +75,11 @@
                                             <span>Gerenciar usuários cadastrados no sistema</span>
                                         </div>
                                         <br>
-                                        <button type="button" class="btn btn-success" href="{{ route('clients.index') }}">Acessar</button>
+                                        <a class="btn btn-success" href="{{ route('user.listAll') }}">Acessar</a>
 
                                     </div>
                                 </div>
-                            @endcan
+                                    @endcan
                             </div>
                         </div>
                     </div>

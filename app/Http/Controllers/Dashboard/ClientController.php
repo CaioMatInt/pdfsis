@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ClientController extends Controller
 {
@@ -46,6 +49,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate(
             [
                 'company' => 'required|string||unique:clients,company',
@@ -53,15 +57,55 @@ class ClientController extends Controller
                 'phone' => 'required|string',
                 'address' => 'required|string',
                 'contact_name' => 'required|string',
-                'email' => 'required|email|unique:clients,email'
+                'email' => 'required|email|unique:clients,email',
+                'image' => 'required|string'
+
             ]);
 
-        Client::create($request->all());
+       // dd($request->image);
+       // Client::create(($request->all()));
+        //Client::create($request->all());
+        //$data = Client::create($request->all());
+       // $client = DB::table('clients')->where('email', $request->email)->get();
+        try {
 
-        $msg = [
-            'type' => 'success',
-            'text' => 'Cliente ' . $request->company . ' cadastrado com sucesso',
-        ];
+            $clients = Client::create($request->all());
+            if ($request->hasFile('image')) {
+
+                $imgName = str_slug($request->input('url')) . '.' . $request->image->extension();
+
+                $path = $request->image->storeAs('clients', $imgName);
+
+                $thumb = Image::make('storage/' . $path);
+
+                $thumb->resize(150, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $thumb->save('storage/clients/' . $thumb->filename . '-thumb.' . $thumb->extension);
+
+                $image = [
+                    'image' => $path,
+                    'thumb' => 'clients/' . $thumb->basename,
+                ];
+
+                $clients->image()->create($image);
+            }
+
+            $msg = [
+                'type' => 'success',
+                'text' => 'Notícia ' . $request->company . ' cadastrada com sucesso',
+            ];
+
+        } catch (\Exception $e) {
+            $msg = [
+                'type' => 'danger',
+                'text' => 'Erro ao cadastrar notícia: ' . $e->getMessage(),
+            ];
+        }
+
+
+
+
         return redirect()->route('clients.index')->with('msg', $msg);
 
 
@@ -153,4 +197,23 @@ class ClientController extends Controller
 
         }
     }
+
+    public function imageUpload(Request $request)
+    {
+        if ($request->hasFile('file')) {
+
+            // validate filesize 10MB
+            if($request->file->getSize() > 10097152){
+                return response('A imagem não pode ser superior a 10 MB.');
+            }
+
+            $path = $request->file->store('clients');
+
+            return response(['location' => '/storage/' . $path], 200);
+        }
+
+
+    }
+
+
 }

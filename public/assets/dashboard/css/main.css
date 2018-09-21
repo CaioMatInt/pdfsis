@@ -66,9 +66,55 @@
     border: 2px solid #ffffff;
 }
 
-
-
-
 #main403 {
     height: 100vh;
 }
+
+.boxinitialpage{
+    padding:60px 0px;
+
+}
+
+.box-part{
+    background:#FFF;
+    border-radius:10px;
+    padding:60px 10px;
+    margin:30px 0px;
+}
+
+.box-part:hover{
+    background:#16b776;
+}
+
+.box-part:hover .fa ,
+.box-part:hover .title ,
+.box-part:hover .text ,
+.box-part:hover a{
+    color:#FFF;
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
