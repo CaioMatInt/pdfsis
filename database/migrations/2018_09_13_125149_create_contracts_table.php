@@ -18,6 +18,8 @@ class CreateContractsTable extends Migration
             $table->unsignedInteger('client_id');
             $table->string('title', 255);
             $table->string('area', 255);
+            $table->string('control_proposal', 255);
+            $table->float('version');
             $table->float('budget');
             $table->mediumText('proposal');
 

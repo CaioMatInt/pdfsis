@@ -26,22 +26,29 @@
                     @endif
                         <form action="{{ route('contracts.store') }}" method="post">
                             {{ @csrf_field() }}
-                            <div class="form-group {{ $errors->has('client_id') ? 'has-error' : '' }}">
-                                <label for="client_id">Client_ID</label>
-                                <input type="number" class="form-control" name="client_id" id="client_id" value="{{$client->id}}">
-                                @if ($errors->has('client_id'))
-                                    <span class="help-block">{{ $errors->first('client_id') }}</span>
-                                @endif
-                            </div>
                             <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                                 <label for="title">Título</label>
                                 <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
                                 @if ($errors->has('title'))
-                                    <span class="help-block">{{ $errors->first('client_id') }}</span>
+                                    <span class="help-block">{{ $errors->first('title') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group {{ $errors->has('control_proposal') ? 'has-error' : '' }}">
+                                <label for="control_proposal">Número da proposta</label>
+                                <input type="text" class="form-control" name="control_proposal" id="control_proposal" value="{{ old('control_proposal') }}" placeholder="(Proposta_XX201899)">
+                                @if ($errors->has('control_proposal'))
+                                    <span class="help-block">{{ $errors->first('control_proposal') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group {{ $errors->has('version') ? 'has-error' : '' }}">
+                                <label for="version">Versão</label>
+                                <input type="number" step=any  class="form-control" name="version" id="version" value=1>
+                                @if ($errors->has('version'))
+                                    <span class="help-block">{{ $errors->first('version') }}</span>
                                 @endif
                             </div>
                             <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
-                                <label for="title">Área</label>
+                                <label for="area">Área</label>
                                 <select id="area" class="form-control" name="area"><option selected>Desenvolvimento</option>
                                     <option>Infraestrutura</option>
 
@@ -53,7 +60,7 @@
 
                             <div class="form-group {{ $errors->has('budget') ? 'has-error' : '' }}">
                                 <label for="budget">Valor</label>
-                                <input type="number" class="form-control" name="budget" id="budget" value="{{ old('budget') }}">
+                                <input type="number" step=any class="form-control" name="budget" id="budget" value="{{ old('budget') }}" placeholder="99.999">
                                 @if ($errors->has('budget'))
                                     <span class="help-block">{{ $errors->first('budget') }}</span>
                                 @endif
@@ -81,6 +88,13 @@
                                         <i class="fa fa-save"></i> Salvar
                                     </button>
                                 </div>
+                            </div>
+                            <div class="form-group {{ $errors->has('client_id') ? 'has-error' : '' }}">
+                                <label for="client_id"></label>
+                                <input type="hidden" class="form-control" name="client_id" id="client_id" value="{{$client->id}}">
+                                @if ($errors->has('client_id'))
+                                    <span class="help-block">{{ $errors->first('client_id') }}</span>
+                                @endif
                             </div>
                 </form>
                          </div>
@@ -110,8 +124,8 @@
             '<p style="text-align:center;\n' +
             'font-family:Lucida Sans Unicode;\n' +
             'font-size:16pt;\n' +
-            'font-weight:bold;">' + title + '</p>'+
-            '<div style="height: 175px;"></div>'+
+            'font-weight:bold;"><span id="contract_title" data-title="xyz">' + title + '</span></p>'+
+            '<br><br><br><br><br><br><br><br>'+
             '<br>'+
             'A/C'+
             '<div style="line-height: 0.5;"><p><strong>Razão social:</strong> <?php echo "$client->company"; ?></p>'+
@@ -525,7 +539,7 @@
                     'searchreplace visualblocks code fullscreen',
                     'insertdatetime media table contextmenu paste code help wordcount'
                 ],
-                toolbar: 'insert | undo redo | formatselect | bold italic backcolor | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | help',
+                toolbar: 'insert | undo redo | formatselect | bold italic backcolor | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | help | code',
                 images_upload_base_path: url + '/',
                 images_upload_handler: function (blobInfo, success, failure) {
                     var xhr, formData;

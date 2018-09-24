@@ -118,18 +118,18 @@ class ContractController extends Controller
 
         $msg = [
             'type' => 'success',
-            'text' => 'Cliente ' . $contracts->title . ' removido com sucesso',
+            'text' => 'Contrato ' . $contracts->title . ' removido com sucesso',
         ];
 
         if(!$contracts){
             $msg = [
                 'type' => 'danger',
-                'text' => 'Cliente não encontrado',
+                'text' => 'Contrato não encontrado',
             ];
             return redirect()->route('clients.index')->with('msg', $msg);
         } else{
             $contracts->delete();
-            return redirect()->route('clients.index')->with('msg', $msg);
+            return redirect()->route('contracts.index')->with('msg', $msg);
 
         }
     }
@@ -137,6 +137,12 @@ class ContractController extends Controller
     public function print($id){
         $contract = Contract::find($id);
         $lol = Storage::url('images/everylogo.png');
+
+        //Converter created_at para formato BR para imprimir no contrato
+        $dateBR = $contract->created_at->toDateString();
+        $dateBR = str_replace("/", "-", $dateBR);
+        $dateBR = date('d-m-Y', strtotime($dateBR));
+
 
          $mpdf = new \Mpdf\Mpdf();
 
@@ -254,10 +260,10 @@ class ContractController extends Controller
     <p><span style='color: green;'>Every System</span> – Tecnologia da Informação. &emsp;&emsp;&emsp;&emsp;&emsp;
     &emsp;&emsp;&emsp;&emsp;
     {PAGENO} <!-- funcionalidade do mpdf,insere numero da página -->  
-    &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;Proposta_9999</p>
+    &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp; $contract->control_proposal</p>
     <p>CNPJ: 25.463.559/0001-89 &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp; 
     &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-    &emsp;&emsp;<span class='datafixo'>99/99/9999</span></p>
+    &emsp;&emsp;<span class='datafixo'>$dateBR</span></p>
     <p>Rua Frei Manoel da Ressurreição,1488, Sala 14,</p>
     <p>Jardim Guanabara, Campinas/SP</p> 
     </div>";
