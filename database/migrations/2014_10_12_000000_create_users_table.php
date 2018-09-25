@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('type');
             $table->string('password');
+            $table->mediumText('signature')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,7 +32,16 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('@every1'),
             'type' => 'admin',
             'created_at' => DB::raw('CURRENT_TIMESTAMP'),
-            'updated_at' => DB::raw('CURRENT_TIMESTAMP')
+            'updated_at' => DB::raw('CURRENT_TIMESTAMP'),
+            'signature' => "<br><br>
+            <div class='assinatura'><p>Atenciosamente, 
+            <p>
+            <p>Renan Fuentes - CEO </p>
+            <p>Tel: +55 (19) 3243-0173 </p>
+            <p>Cel: +55 (19) 9 9717-9845 </p>
+            <p>Cel: +55 (11) 9 8696-7937 </p>
+            </p>Site: www.everysystem.com.br </p></div>
+"
         ]);
            DB::table('users')->insert([
             'name' => 'Usuario comum',
@@ -39,7 +49,16 @@ class CreateUsersTable extends Migration
             'password' => bcrypt('123456'),
             'type' => 'common',
             'created_at' => DB::raw('CURRENT_TIMESTAMP'),
-            'updated_at' => DB::raw('CURRENT_TIMESTAMP')
+            'updated_at' => DB::raw('CURRENT_TIMESTAMP'),
+            'signature' => "<br><br>
+            <div class='assinatura'><p>Atenciosamente, 
+            <p>
+            <p>comum </p>
+            <p>Tel: +55 (19) 9999999 </p>
+            <p>Cel: +55 (19) 99999999 </p>
+            <p>Cel: +55 (11) 99999999</p>
+            </p>Site: www.everysystem.com.br </p></div>
+            "
         ]);
     }
 

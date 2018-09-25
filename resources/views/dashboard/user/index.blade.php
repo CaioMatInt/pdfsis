@@ -39,13 +39,16 @@
                                 <strong><i class="fa fa-pencil margin-r-5"></i> Última atualização</strong>
                                 <p class="text-muted">{{ $user->updated_at->format('d/m/Y') }}</p>
                                 <hr>
+                                <strong><i class="fa fa-pencil margin-r-5"></i> Assinatura</strong>
+                                <p class="text-muted">{!! $user->signature !!}</p>
+                                <hr>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-sm-6">
                                         <a href="{{ route('user.edit', $user->user_id) }}" class="btn btn-flat btn-primary btn-block">
-                                            <i class="fa fa-pencil" aria-hidden="true"></i> Editar informações
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>  Editar informações
                                         </a>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-sm-6">
                                         <a href="{{ route('user.edit.password') }}" class="btn btn-flat btn-primary btn-block">
                                             <i class="fa fa-lock" aria-hidden="true"></i> Atualizar senha
                                         </a>

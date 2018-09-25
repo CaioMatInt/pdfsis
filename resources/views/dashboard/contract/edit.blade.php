@@ -89,7 +89,7 @@
                         </div>
 
                     </form>
-                        <p id="demo" onclick="myFunction()">Click me to change my text color.</p>
+                        <p id="demo" onclick="myFunction()">Teste!</p>
                 </div>
             </div>
         </section>

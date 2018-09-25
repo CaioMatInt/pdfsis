@@ -236,7 +236,7 @@ class ContractController extends Controller
         $contract->sustentation
         </div><br>
         
-        <br><div  class='retanguloverde'> &nbsp; 13.	Sustentação </div><br>
+        <br><div class='retanguloverde'> &nbsp; 13.	Sustentação </div><br>
         
         <br><div class='texto'>
         <p>A utilização de CDN é recomendável para todos os sites, proporcionando performance e redução de custos com os players. Segue abaixo dois orçamentos para cada site:</p>
@@ -272,6 +272,7 @@ class ContractController extends Controller
     <hr>";
 
         $assinaturaRenan = "
+<indexentry />assinatura
 <br><br>
 <div class='assinatura'><p>Atenciosamente, 
 <p>
@@ -282,16 +283,21 @@ class ContractController extends Controller
 </p>Site: www.everysystem.com.br </p></div>
 ";
 
+
             //$mpdf->SetDisplayMode('fullpage');
             $css = \Illuminate\Support\Facades\File::get(storage_path('css\pdfstyle.css'));
         $mpdf->setAutoBottomMargin;
             $mpdf->SetHtmlFooter($footer);
             $mpdf->SetHTMLHeader($header);
             $mpdf->WriteHTML($css,1);
-           // $mpdf->WriteHTML($pagina1);
-           // $mpdf->WriteHTML($pagina3);
             $mpdf->WriteHTML($pagina);
-            $mpdf->WriteHTML($assinaturaRenan);
+            $mpdf->WriteHTML(auth()->user()->signature);
+
+
+            $mpdf->AddPage();
+            $mpdf->WriteHTML('<p>Índice</p>', 2);
+            $mpdf->InsertIndex('', 1, '', '');
+            //$mpdf->WriteHTML(auth()->user()->signature);
             $mpdf->Output();
             exit;
 

@@ -11,7 +11,7 @@
             <ol class="breadcrumb">
                 <li><a href="{{ route('admin.home') }}"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="{{ route('user.index') }}">Minha conta</a></li>
-                <li class="active">atualizar informações</li>
+                <li class="active">Atualizar informações</li>
             </ol>
         </section>
         <section class="content">
@@ -50,6 +50,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @can('delete', App\Models\User::class)
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -58,6 +59,20 @@
                                                 @if ($errors->has('type'))
                                                     <p class="text-danger">
                                                         <strong>{{ $errors->first('type') }}</strong>
+                                                    </p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endcan
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="signature">Assinatura:</label>
+                                                <textarea class="form-control" name="signature" id="signature">{{ $user->signature }}</textarea>
+                                                @if ($errors->has('signature'))
+                                                    <p class="text-danger">
+                                                        <strong>{{ $errors->first('signature') }}</strong>
                                                     </p>
                                                 @endif
                                             </div>
@@ -83,4 +98,38 @@
             </div>
         </section>
     </div>
+@endsection
+
+@section ('scripts')
+    <script src="{{ asset('assets/js/plugins/tinymce/tinymce.min.js') }}"></script>
+
+   <script>
+       tinymce.init(
+           {
+               selector: 'textarea',
+               height: 400,
+               menubar: false,
+               language: 'pt_BR',
+               table_grid: false,
+               plugins: [
+                   'advlist autolink lists link image charmap print preview anchor textcolor image',
+                   'searchreplace visualblocks code fullscreen',
+                   'insertdatetime media table contextmenu paste code help wordcount'
+               ],
+               toolbar: 'insert | undo redo | formatselect | bold italic backcolor | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | help | code',
+               content_css: [
+                   '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                   '//www.tinymce.com/css/codepen.min.css']
+
+
+
+           })
+
+      </script>
+
+
+
+
+
+
 @endsection

@@ -146,7 +146,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 1.	Objeto – Serviço Solicitado</div>'+
+            'line-height:30px;"> &nbsp; 1.	Objeto – Serviço Solicitado</div><indexentry content="01. Objeto – Serviço Solicitado" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -164,7 +164,7 @@
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
             'line-height:30px;"> ' +
-            '&nbsp; 2. Descrição do Serviço</div>'+
+            '&nbsp; 2. Descrição do Serviço</div><indexentry content="02. Descrição do Serviço" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -229,9 +229,7 @@
             '<td></td>\n' +
             '<td></td>\n' +
             '</tr></tbody>\n' +
-            '</table></div>'+
-            '<br>' +
-            '<pagebreak />'+
+            '</table></div><br>'+
 
             '<div style=" margin-left: 1.25cm;'+
             'margin-right: 1.25cm;'+
@@ -243,7 +241,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 3.\tPré requisitos  </div>'+
+            'line-height:30px;"> &nbsp; 3.\tPré requisitos  </div><indexentry content="03. Pré Requisitos" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -261,7 +259,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 4.\tExceções </div>'+
+            'line-height:30px;"> &nbsp; 4.\tExceções </div><indexentry content="04. Exceções" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -279,7 +277,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;">&nbsp; 5.\tAdicional</div>'+
+            'line-height:30px;">&nbsp; 5.\tAdicional</div><indexentry content="05. Adicional" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -297,7 +295,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;">&nbsp; 6.\tEquipe de Trabalho</div>'+
+            'line-height:30px;">&nbsp; 6.\tEquipe de Trabalho</div><indexentry content="06. Equipe de Trabalho" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -315,7 +313,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 7.\tTempo de Execução </div>'+
+            'line-height:30px;"> &nbsp; 7.\tTempo de Execução </div><indexentry content="07. Tempo de Execução" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -393,8 +391,8 @@
             '<td></td>\n' +
             '<td></td>\n' +
             '</tr>\n' +
-            '</table></div><br>'+
-            '<pagebreak />'+
+            '</table></div><br>' +
+
 
             '<div style=" margin-left: 1.25cm;'+
             'margin-right: 1.25cm;'+
@@ -406,7 +404,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;">&nbsp; 8.\tValor </div>'+
+            'line-height:30px;">&nbsp; 8.\tValor </div><indexentry content="08. Valor" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -424,7 +422,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 9.\tForma de Pagamento   </div>'+
+            'line-height:30px;"> &nbsp; 9.\tForma de Pagamento   </div><indexentry content="09. Forma de Pagamento" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -444,7 +442,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 10.\tManutenção após entrega  </div>'+
+            'line-height:30px;"> &nbsp; 10.\tManutenção após entrega  </div><indexentry content="10. Manutenção após entrega" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -462,7 +460,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 11.\tInfraestrutura (Hospedagem)  </div>'+
+            'line-height:30px;"> &nbsp; 11.\tInfraestrutura (Hospedagem)  </div><indexentry content="11. Infraestrutura" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -480,7 +478,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 12.\tCDN (Content Delivery Network)  </div>'+
+            'line-height:30px;"> &nbsp; 12.\tCDN (Content Delivery Network)  </div><indexentry content="12. CDN (Content Delivery Network)" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -498,7 +496,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 13.\tSustentação </div>'+
+            'line-height:30px;"> &nbsp; 13.\tSustentação </div><indexentry content="13. Sustentação" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -516,7 +514,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 14.\tValidade  </div>'+
+            'line-height:30px;"> &nbsp; 14.\tValidade  </div><indexentry content="14. Validade" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -533,6 +531,7 @@
                 height: 800,
                 menubar: false,
                 language: 'pt_BR',
+                valid_elements : '*[*]',
                 table_grid: false,
                 plugins: [
                     'advlist autolink lists link image charmap print preview anchor textcolor image',

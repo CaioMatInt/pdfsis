@@ -51,6 +51,8 @@ class UserController extends Controller
         return view('dashboard/user/edit', $data);
     }
 
+
+
     /**
      * @param Request $request
      * @param $id
@@ -60,7 +62,8 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|string',
-            'email' => 'required|string|email'
+            'email' => 'required|string|email',
+            'signature' => 'required|string'
         ]);
 
         if(auth()->user()->type != 'admin'){
@@ -77,6 +80,7 @@ class UserController extends Controller
             $user = User::find($id);
             $user->name = $request->input('name');
             $user->email = $request->input('email');
+            $user->signature = $request->input('signature');
             $user->save();
 
             $msg = [
