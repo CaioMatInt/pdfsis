@@ -236,7 +236,7 @@ class ContractController extends Controller
         $contract->sustentation
         </div><br>
         
-        <br><div class='retanguloverde'> &nbsp; 13.	Sustentação </div><br>
+        <br><div  class='retanguloverde'> &nbsp; 13.	Sustentação </div><br>
         
         <br><div class='texto'>
         <p>A utilização de CDN é recomendável para todos os sites, proporcionando performance e redução de custos com os players. Segue abaixo dois orçamentos para cada site:</p>
