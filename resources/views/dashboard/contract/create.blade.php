@@ -124,7 +124,7 @@
             '<p style="text-align:center;\n' +
             'font-family:Lucida Sans Unicode;\n' +
             'font-size:16pt;\n' +
-            'font-weight:bold;"><span id="contract_title" data-title="xyz">' + title + '</span></p>'+
+            'font-weight:bold;"><span id="contract-title">' + title + '</span></p>'+
             '<br><br><br><br><br><br><br><br>'+
             '<br>'+
             'A/C'+

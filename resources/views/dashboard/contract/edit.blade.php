@@ -89,9 +89,7 @@
                         </div>
 
                     </form>
-                        <button type="submit" class="btn btn-success btn-flat teste">
-                            <i class="fa fa-save"></i> teste
-                        </button>
+                        <p id="demo" onclick="myFunction()">Click me to change my text color.</p>
                 </div>
             </div>
         </section>
@@ -124,19 +122,18 @@
                     '//www.tinymce.com/css/codepen.min.css'],
 
              })
-        ;
 
 
-    </script>
-    <script>
-        $(document.body).on('click', '.teste', function() {
-            "use strict";
-
-            let texto = $('#contract_title').data("title");
+            function myFunction() {
+                var ele = tinyMCE.activeEditor.dom.get("contract-title");
+                var text = $(ele).text();
+                alert(text);
 
 
-            alert(texto);
-        });
+
+        }
+
+
 
     </script>
 @endsection
