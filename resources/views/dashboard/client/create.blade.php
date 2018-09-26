@@ -12,7 +12,7 @@
             <ol class="breadcrumb">
                 <li><a href="{{ route('admin.home') }}"><i class="fa fa-home"></i> Home</a></li>
                 <li><a href="{{ route('clients.index') }}"> Clientes cadastrados</a></li>
-                <li class="active">Editar cliente</li>
+                <li class="active">Criar cliente</li>
             </ol>
         </section>
         <section class="content">
@@ -23,7 +23,7 @@
                             {{ session('msg.text') }}
                         @endcomponent
                     @endif
-                        <form action="{{ route('clients.store') }}" method="post">
+                        <form action="{{ route('clients.store') }}" method="post" enctype="multipart/form-data">
                             {{ @csrf_field() }}
                                 <div class="form-group {{ $errors->has('company') ? 'has-error' : '' }}">
                                     <label for="company">Razão social</label>

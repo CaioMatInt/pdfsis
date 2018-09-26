@@ -58,7 +58,7 @@ class ClientController extends Controller
                 'address' => 'required|string',
                 'contact_name' => 'required|string',
                 'email' => 'required|email|unique:clients,email',
-                'image' => 'required|string'
+                'image' => 'sometimes'
 
             ]);
 
@@ -70,26 +70,15 @@ class ClientController extends Controller
         try {
 
             $clients = Client::create($request->all());
-            if ($request->hasFile('image')) {
 
-                $imgName = str_slug($request->input('url')) . '.' . $request->image->extension();
+                if ($request->hasFile('image')) {
 
-                $path = $request->image->storeAs('clients', $imgName);
+                $imgName = str_slug($request->input('company')) . '.' . $request->image->extension();
 
-                $thumb = Image::make('storage/' . $path);
+                $path = $request->image->storeAs('public/clients', $imgName);
+                    Client::where('company', $request->company)->update(['image' => $path]);
 
-                $thumb->resize(150, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $thumb->save('storage/clients/' . $thumb->filename . '-thumb.' . $thumb->extension);
-
-                $image = [
-                    'image' => $path,
-                    'thumb' => 'clients/' . $thumb->basename,
-                ];
-
-                $clients->image()->create($image);
-            }
+                }
 
             $msg = [
                 'type' => 'success',

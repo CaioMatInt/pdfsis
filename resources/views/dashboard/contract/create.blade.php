@@ -120,7 +120,7 @@
             'font-weight:bold;">PROPOSTA COMERCIAL</div>'+
             '<div style="    width: 374px;\n' +
             'height: 120px;\n' +
-            'background-color: blue;">Insira o logo da empresa aqui</div>'+
+            'background-color: blue;"> </div>'+
             '<p style="text-align:center;\n' +
             'font-family:Lucida Sans Unicode;\n' +
             'font-size:16pt;\n' +

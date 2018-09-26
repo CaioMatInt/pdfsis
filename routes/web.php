@@ -35,6 +35,7 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     //client
     //Route::get('clientes', 'ClientController@index')->name('contract.index');
     Route::resource('clients', 'ClientController', ['as' => ''])->except(['show']);
+    Route::post('clients/create/image/upload', 'ClientController@imageUpload')->name('imageUpload');
     Route::resource('contracts', 'ContractController', ['as' => ''])->except(['show']);
     Route::get('contracts/print{id}', 'ContractController@print')->name('contracts.print');
     Route::get('teste', 'ContractController@teste')->name('contracts.teste');

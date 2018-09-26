@@ -283,21 +283,23 @@ class ContractController extends Controller
 </p>Site: www.everysystem.com.br </p></div>
 ";
 
+        $imgtest = '<img src="https://vignette.wikia.nocookie.net/gundam/images/8/86/AGE-IIMG_Gundam_AGEII_Magnum_%28Episode_03%29_04.jpg/revision/latest?cb=20180417212835" width="90">';
 
             //$mpdf->SetDisplayMode('fullpage');
             $css = \Illuminate\Support\Facades\File::get(storage_path('css\pdfstyle.css'));
-        $mpdf->setAutoBottomMargin;
+            $mpdf->setAutoBottomMargin;
             $mpdf->SetHtmlFooter($footer);
             $mpdf->SetHTMLHeader($header);
             $mpdf->WriteHTML($css,1);
             $mpdf->WriteHTML($pagina);
             $mpdf->WriteHTML(auth()->user()->signature);
-
+            $mpdf->WriteHTML($imgtest);
 
             $mpdf->AddPage();
             $mpdf->WriteHTML('<p>Índice</p>', 2);
             $mpdf->InsertIndex('', 1, '', '');
             //$mpdf->WriteHTML(auth()->user()->signature);
+
             $mpdf->Output();
             exit;
 
