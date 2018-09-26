@@ -15,6 +15,8 @@
             </ol>
         </section>
         <section class="content">
+            <img src="/storage/clients/31231.jpeg">
+
             <div class="box">
                 <div class="box-header with-border">
                     <h4 class="box-title">Contratos cadastrados</h4>

@@ -146,7 +146,7 @@ class ContractController extends Controller
         $dateBR = date('d-m-Y', strtotime($dateBR));
 
 
-        $mpdf = new \Mpdf\Mpdf();
+        $mpdf = new \Mpdf\Mpdf(['debug' => true]);
 
         $pagina = "$contract->proposal";
         /*$pagina1 = "
@@ -282,7 +282,7 @@ class ContractController extends Controller
 </p>Site: www.everysystem.com.br </p></div>
 ";
 
-        $imgtest = '<img src="https://vignette.wikia.nocookie.net/gundam/images/8/86/AGE-IIMG_Gundam_AGEII_Magnum_%28Episode_03%29_04.jpg/revision/latest?cb=20180417212835" width="90">';
+        $imgtest = '<img src="http://127.0.0.1:8000/31231.jpeg" />';
 
         //$mpdf->SetDisplayMode('fullpage');
         $css = \Illuminate\Support\Facades\File::get(storage_path('css\pdfstyle.css'));
@@ -292,7 +292,9 @@ class ContractController extends Controller
         $mpdf->WriteHTML($css, 1);
         $mpdf->WriteHTML($pagina);
         $mpdf->WriteHTML(auth()->user()->signature);
-        $mpdf->WriteHTML($imgtest);
+        //$mpdf->WriteHTML($imgtest);
+        $mpdf->Image('/storage/clients/gf.png', 0, 0, 210, 297, 'png', '', true, false);
+        //$mpdf->WriteHTML($imgtest);
 
         $mpdf->AddPage();
         $mpdf->WriteHTML('<p>Índice</p>', 2);
