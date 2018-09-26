@@ -41,7 +41,7 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     Route::get('teste', 'ContractController@teste')->name('contracts.teste');
     Route::get('contracts/create','ContractController@create')->name('contracts.create');
 
-
+    Route::get('/test', 'ContractController@test');
 
 
 

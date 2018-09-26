@@ -40,19 +40,20 @@ class ContractController extends Controller
 
         return view('dashboard.contract.create', $data);
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         Contract::create($request->all());
         $msg = [
-        'type' => 'success',
-        'text' => 'Contrato ' . $request->title . ' cadastrado com sucesso',
-    ];
+            'type' => 'success',
+            'text' => 'Contrato ' . $request->title . ' cadastrado com sucesso',
+        ];
         return redirect()->route('contracts.index')->with('msg', $msg);
 
 
@@ -61,7 +62,7 @@ class ContractController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -72,7 +73,7 @@ class ContractController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -90,8 +91,8 @@ class ContractController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -104,7 +105,7 @@ class ContractController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -121,20 +122,21 @@ class ContractController extends Controller
             'text' => 'Contrato ' . $contracts->title . ' removido com sucesso',
         ];
 
-        if(!$contracts){
+        if (!$contracts) {
             $msg = [
                 'type' => 'danger',
                 'text' => 'Contrato não encontrado',
             ];
             return redirect()->route('clients.index')->with('msg', $msg);
-        } else{
+        } else {
             $contracts->delete();
             return redirect()->route('contracts.index')->with('msg', $msg);
 
         }
     }
 
-    public function print($id){
+    public function print($id)
+    {
         $contract = Contract::find($id);
         $lol = Storage::url('images/everylogo.png');
 
@@ -144,9 +146,9 @@ class ContractController extends Controller
         $dateBR = date('d-m-Y', strtotime($dateBR));
 
 
-         $mpdf = new \Mpdf\Mpdf();
+        $mpdf = new \Mpdf\Mpdf();
 
-         $pagina = "$contract->proposal";
+        $pagina = "$contract->proposal";
         /*$pagina1 = "
 
 <body><br><br><div class='pagina'><br><div class='titulo'>PROPOSTA COMERCIAL</div>
@@ -253,9 +255,6 @@ class ContractController extends Controller
         "; */
 
 
-
-
-
         $footer = "<div class='rodape'><hr>
     <p><span style='color: green;'>Every System</span> – Tecnologia da Informação. &emsp;&emsp;&emsp;&emsp;&emsp;
     &emsp;&emsp;&emsp;&emsp;
@@ -285,29 +284,90 @@ class ContractController extends Controller
 
         $imgtest = '<img src="https://vignette.wikia.nocookie.net/gundam/images/8/86/AGE-IIMG_Gundam_AGEII_Magnum_%28Episode_03%29_04.jpg/revision/latest?cb=20180417212835" width="90">';
 
-            //$mpdf->SetDisplayMode('fullpage');
-            $css = \Illuminate\Support\Facades\File::get(storage_path('css\pdfstyle.css'));
-            $mpdf->setAutoBottomMargin;
-            $mpdf->SetHtmlFooter($footer);
-            $mpdf->SetHTMLHeader($header);
-            $mpdf->WriteHTML($css,1);
-            $mpdf->WriteHTML($pagina);
-            $mpdf->WriteHTML(auth()->user()->signature);
-            $mpdf->WriteHTML($imgtest);
+        //$mpdf->SetDisplayMode('fullpage');
+        $css = \Illuminate\Support\Facades\File::get(storage_path('css\pdfstyle.css'));
+        $mpdf->setAutoBottomMargin;
+        $mpdf->SetHtmlFooter($footer);
+        $mpdf->SetHTMLHeader($header);
+        $mpdf->WriteHTML($css, 1);
+        $mpdf->WriteHTML($pagina);
+        $mpdf->WriteHTML(auth()->user()->signature);
+        $mpdf->WriteHTML($imgtest);
 
-            $mpdf->AddPage();
-            $mpdf->WriteHTML('<p>Índice</p>', 2);
-            $mpdf->InsertIndex('', 1, '', '');
-            //$mpdf->WriteHTML(auth()->user()->signature);
+        $mpdf->AddPage();
+        $mpdf->WriteHTML('<p>Índice</p>', 2);
+        $mpdf->InsertIndex('', 1, '', '');
+        //$mpdf->WriteHTML(auth()->user()->signature);
 
-            $mpdf->Output();
-            exit;
+        $mpdf->Output();
+        exit;
 
 
     }
 
-    public function teste(){
+    public function teste()
+    {
         return view('dashboard.contract.teste');
+
+    }
+
+
+    public function test()
+    {
+
+        $hhtml = '
+<htmlpageheader name="myHTMLHeaderOdd" style="display:none">
+<div style="background-color:#BBEEFF" align="center"><b>&nbsp;{PAGENO}&nbsp;</b></div>
+</htmlpageheader>
+<htmlpagefooter name="myHTMLFooterOdd" style="display:none">
+<div style="background-color:#CFFFFC" align="center"><b>&nbsp;{PAGENO}&nbsp;</b></div>
+</htmlpagefooter>
+<sethtmlpageheader name="myHTMLHeaderOdd" page="O" value="on" show-this-page="1" />
+<sethtmlpagefooter name="myHTMLFooterOdd" page="O" value="on" show-this-page="1" />
+';
+//==============================================================
+        $html = '
+<h1>mPDF Page Sizes</h1>
+<h3>Changing page (sheet) sizes within the document</h3>
+';
+//==============================================================
+//==============================================================
+        $mpdf = new \Mpdf\Mpdf(['c', 'A4']);
+        $mpdf->WriteHTML($hhtml);
+        $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<p>This should print on an A4 (portrait) sheet</p>');
+        $mpdf->WriteHTML('<tocpagebreak sheet-size="A4-L" toc-sheet-size="A5" toc-preHTML="This ToC should print on an A5 sheet" />');
+        $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<tocentry content="A4 landscape" />
+            <p>This page appears just after the ToC and should print on an A4 (landscape) sheet</p>'
+        );
+        $mpdf->WriteHTML('<pagebreak sheet-size="A5-L" />');
+        $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<tocentry content="A5 landscape" /><p>This should print on an A5 (landscape) sheet</p>');
+        $mpdf->WriteHTML('<pagebreak sheet-size="Letter" />');
+        $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
+        $mpdf->WriteHTML('<pagebreak sheet-size="150mm 150mm" />');
+        $mpdf->WriteHTML($html);
+
+        $mpdf->WriteHTML('<tocentry content="150mm square" />
+            <p>This should print on a sheet 150mm x 150mm</p>');
+        $mpdf->WriteHTML('<pagebreak sheet-size="11.69in 8.27in" />');
+        $mpdf->WriteHTML($html);
+
+        $mpdf->WriteHTML('<tocentry content="A4 landscape (ins)" />
+            <p>This should print on a sheet 11.69in x 8.27in = A4 landscape</p>');
+
+        $mpdf->WriteHTML('<pagebreak sheet-size="11.69in 8.27in" />');
+        $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<tocentry content="Vampeta" /><p>Vampeta test</p>');
+        $mpdf->WriteHTML('<tocentry content="Vampeta 2" /><p>Vampeta test 2</p>');
+
+
+        $mpdf->Output();
+        exit;
+//==============================================================
+//==============================================================
 
     }
 }
