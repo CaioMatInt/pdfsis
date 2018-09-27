@@ -55,7 +55,13 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="type">Tipo de usuário:</label>
-                                                <input class="form-control" name="type" id="type" type="text" value="{{ $user->type }}">
+                                                <select id="area" class="form-control" name="area"><option selected>{{$user->type}}</option>
+                                                    @if ($user->type == 'common')
+                                                        <option>admin</option>
+                                                    @else
+                                                        <option>common</option>
+                                                    @endif
+                                                </select>
                                                 @if ($errors->has('type'))
                                                     <p class="text-danger">
                                                         <strong>{{ $errors->first('type') }}</strong>

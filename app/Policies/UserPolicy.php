@@ -27,7 +27,7 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create()
     {
         return auth()->user()->type === 'admin';
     }
@@ -39,7 +39,7 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function update(User $user, User $model)
+    public function update()
     {
         return auth()->user()->type === 'admin';
     }
@@ -63,7 +63,7 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return mixed
      */
-    public function restore(User $user, User $model)
+    public function restore()
     {
         return auth()->user()->type === 'admin';
     }

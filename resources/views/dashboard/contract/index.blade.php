@@ -66,6 +66,11 @@
                                            data-placement="top" target="_blank">
                                             <i class="fa fa-print"></i>
                                         </a>
+                                        <a href="{{ route('contracts.edit', $row->id) }}"
+                                           class="btn btn-success btn-flat" data-toggle="tooltip" title="Criar Versão"
+                                           data-placement="top">
+                                            <i class="fa fa-copy"></i>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

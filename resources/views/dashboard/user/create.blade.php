@@ -21,9 +21,8 @@
                         <div class="box box-primary">
                             <div class="box-body box-profile">
                                 <h3 class="box-title">Criar usuário</h3>
-                                <form action="{{ route('user.store', $user) }}" method="POST">
+                                <form action="{{ route('user.store') }}" method="POST">
                                     {{ csrf_field() }}
-                                    {{ method_field('PUT') }}
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
@@ -54,12 +53,39 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="type">Tipo de usuário:</label>
-                                                <input class="form-control" name="type" id="type" type="text">
+                                                <select id="type" class="form-control" name="type"><option selected>common</option>
+                                                    <option>admin</option>
+                                                </select>
                                                 @if ($errors->has('type'))
                                                     <p class="text-danger">
                                                         <strong>{{ $errors->first('type') }}</strong>
                                                     </p>
                                                 @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="password">Senha:</label>
+                                                <input class="form-control" name="password" id="password" type="password">
+                                                @if ($errors->has('password'))
+                                                    <p class="text-danger">
+                                                        <strong>{{ $errors->first('type') }}</strong>
+                                                    </p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="signature">Assinatura:</label>
+                                                <textarea class="form-control" name="signature" id="signature"></textarea>
+                                                <p class="text-danger">
+                                                    <strong>{{ $errors->first('signature') }}</strong>
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -83,4 +109,35 @@
             </div>
         </section>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/plugins/tinymce/tinymce.min.js') }}"></script>
+    <script>
+
+        tinymce.init(
+            {
+                selector: 'textarea',
+                height: 300,
+                menubar: false,
+                language: 'pt_BR',
+                table_grid: false,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor textcolor image',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table contextmenu paste code help wordcount'
+                ],
+                toolbar: 'insert | undo redo | formatselect | bold italic backcolor | forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | table | help',
+                content_css: [
+                    '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                    '//www.tinymce.com/css/codepen.min.css'],
+
+            })
+
+
+
+
+
+
+    </script>
 @endsection

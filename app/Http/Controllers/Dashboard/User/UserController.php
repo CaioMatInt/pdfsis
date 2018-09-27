@@ -60,6 +60,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->authorize('update', User::class);
+
         $this->validate($request, [
             'name' => 'required|string',
             'email' => 'required|string|email',
@@ -151,6 +153,7 @@ class UserController extends Controller
     }
 
     public function destroy($id){
+        $this->authorize('delete', User::class);
         try {
             $user = User::find($id);
             $user->delete();
@@ -166,7 +169,7 @@ class UserController extends Controller
             ];
         }
 
-        return redirect()->route('user.index')->with('msg', $msg);
+        return redirect()->route('user.listAll')->with('msg', $msg);
     }
 
     public function create(){
