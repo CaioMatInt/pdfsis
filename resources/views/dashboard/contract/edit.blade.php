@@ -48,7 +48,12 @@
                             <div class="col-md-12">
                                 <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
                                     <label for="area">Área</label>
-                                    <input type="text" class="form-control" name="area" id="area" value="{{ old('area', $contracts->area) }}">
+                                    <select id="area" class="form-control" name="area"><option selected>{{$contracts->area}}</option>
+                                        <option>Desenvolvimento</option>
+                                        <option>Infraestrutura</option>
+                                        <option>Segurança da Informação</option>
+                                        <option>Cloud</option>
+                                    </select>
                                     @if ($errors->has('area'))
                                         <span class="help-block">{{ $errors->first('area') }}</span>
                                     @endif
@@ -89,7 +94,6 @@
                         </div>
 
                     </form>
-                        <p id="demo" onclick="myFunction()">Teste!</p>
                 </div>
             </div>
         </section>
@@ -99,10 +103,6 @@
 @section('scripts')
     <script src="{{ asset('assets/js/plugins/tinymce/tinymce.min.js') }}"></script>
     <script>
-
-            let title = document.getElementById("title").value;
-            let budget = document.getElementById("budget").value;
-
 
         tinymce.init(
             {
@@ -124,14 +124,7 @@
              })
 
 
-            function myFunction() {
-                var ele = tinyMCE.activeEditor.dom.get("contract-title");
-                var text = $(ele).text();
-                alert(text);
 
-
-
-        }
 
 
 

@@ -69,7 +69,7 @@
                                         @endcan
                                         <?php $clientArray = array("id" => $row->id,"company" => $row->company,
                                             "cnpj" => $row->cnpj, "phone" => $row->phone, "address" => $row->address,
-                                            "contact_name" => $row->contact_name, "email" => $row->email);
+                                            "contact_name" => $row->contact_name, "email" => $row->email, "image" => $row->image);
                                        // $clientArray=serialize($clientArray);
                                         //dd($clientArray);
                                         ?>

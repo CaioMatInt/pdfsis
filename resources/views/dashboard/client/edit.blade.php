@@ -84,15 +84,6 @@
                                     @endif
                                 </div>
                             </div>
-
-                            @if(isset($clients->images[0]->thumb))
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Imagem atual</label>
-                                        <img src="{{ Storage::url($clients->images[0]->thumb) }}">
-                                    </div>
-                                </div>
-                            @endif
                             <div class="col-md-4">
                                 <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
                                     <label for="image">Imagem</label>

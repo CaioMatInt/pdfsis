@@ -85,7 +85,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group {{ $errors->has('image') ? 'has-error' : '' }}">
-                                            <label for="image">Imagem</label>
+                                            <label for="image">Imagem</label><span style="color: #8b8b8b">  (Limite de altura: 200px)</span>
                                             <input type="file" class="form-control" name="image" id="image">
                                             @if ($errors->has('image'))
                                                 <span class="help-block">{{ $errors->first('image') }}</span>

@@ -58,9 +58,11 @@ class ClientController extends Controller
                 'address' => 'required|string',
                 'contact_name' => 'required|string',
                 'email' => 'required|email|unique:clients,email',
-                'image' => 'sometimes'
+                'image' => 'sometimes|mimes:jpeg,jpg,png|dimensions:max_height=200'
 
-            ]);
+            ]
+
+        );
 
        // dd($request->image);
        // Client::create(($request->all()));
@@ -76,19 +78,21 @@ class ClientController extends Controller
                 $imgName = str_slug($request->input('company')) . '.' . $request->image->extension();
 
                 $path = $request->image->storeAs('public/clients', $imgName);
-                    Client::where('company', $request->company)->update(['image' => $path]);
+
+                $pathPdf = 'storage/clients/'.$imgName;
+                    Client::where('company', $request->company)->update(['image' => $pathPdf]);
 
                 }
 
             $msg = [
                 'type' => 'success',
-                'text' => 'Notícia ' . $request->company . ' cadastrada com sucesso',
+                'text' => 'Cliente ' . $request->company . ' cadastrado com sucesso',
             ];
 
         } catch (\Exception $e) {
             $msg = [
                 'type' => 'danger',
-                'text' => 'Erro ao cadastrar notícia: ' . $e->getMessage(),
+                'text' => 'Erro ao cadastrar cliente: ' . $e->getMessage(),
             ];
         }
 
@@ -147,12 +151,39 @@ class ClientController extends Controller
                 'phone' => 'required|string',
                 'address' => 'required|string',
                 'contact_name' => 'required|string',
-                'email' => 'required|email|unique:clients,email,'.$id
+                'email' => 'required|email|unique:clients,email,'.$id,
+                'image' => 'sometimes|mimes:jpeg,jpg,png'
             ]);
 
         Client::find($id)->update($request->all());
 
-        return redirect()->route('clients.index');
+        try {
+
+            if ($request->hasFile('image')) {
+
+                $imgName = str_slug($request->input('company')) . '.' . $request->image->extension();
+
+                $path = $request->image->storeAs('public/clients', $imgName);
+
+                $pathPdf = 'storage/clients/'.$imgName;
+                Client::where('company', $request->company)->update(['image' => $pathPdf]);
+
+            }
+
+            $msg = [
+                'type' => 'success',
+                'text' => 'Notícia ' . $request->company . ' cadastrada com sucesso',
+            ];
+
+        } catch (\Exception $e) {
+            $msg = [
+                'type' => 'danger',
+                'text' => 'Erro ao cadastrar notícia: ' . $e->getMessage(),
+            ];
+        }
+
+
+        return redirect()->route('clients.index')->with('msg', $msg);
     }
 
     /**
@@ -163,28 +194,27 @@ class ClientController extends Controller
      */
     public function destroy($id)
     {
-        //TODO: INSERIR UM TRY CATCH, POIS MSG RECEBE ANTES A CONFIRMAÇÃO
 
         $this->authorize('delete', Client::class);
 
         $cliente = Client::find($id);
-
-        $msg = [
-            'type' => 'success',
-            'text' => 'Cliente ' . $cliente->company . ' removido com sucesso',
-        ];
-
-        if(!$cliente){
-            $msg = [
-                'type' => 'danger',
-                'text' => 'Cliente não encontrado',
-            ];
-            return redirect()->route('clients.index');
-        } else{
+        try {
         $cliente->delete();
-            return redirect()->route('clients.index')->with('msg', $msg);
+            $msg = [
+                'type' => 'success',
+                'text' => "Cliente excluído com sucesso"
+            ];
+
 
         }
+        catch (\Exception $e){
+            $msg = [
+                'type' => 'danger',
+                'text' => "Atenção: Remova todos os contratos vinculados a este cliente para deletá-lo."
+            ];
+        }
+            return redirect()->route('clients.index')->with('msg', $msg);
+
     }
 
     public function imageUpload(Request $request)

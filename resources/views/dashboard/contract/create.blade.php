@@ -51,7 +51,8 @@
                                 <label for="area">Área</label>
                                 <select id="area" class="form-control" name="area"><option selected>Desenvolvimento</option>
                                     <option>Infraestrutura</option>
-
+                                    <option>Segurança da Informação</option>
+                                    <option>Cloud</option>
                                 </select>
                                 @if ($errors->has('area'))
                                     <span class="help-block">{{ $errors->first('area') }}</span>
@@ -110,32 +111,27 @@
         function initContract(){
             let title = document.getElementById("title").value;
             let budget = document.getElementById("budget").value;
-        let layout = '<br><br><div style="margin-left: 1.25cm;\n' +
-            'margin-right: 1.25cm;\n' +
-            'size: A4;\n' +
-            'width: 21cm;\n' +
-            'height: 29.7cm;"><br><div style="text-align:center;\n' +
+        let layout = '<br><br><br><div style="text-align:center;\n' +
             'font-family:Lucida Sans Unicode;\n' +
             'font-size:20pt;\n' +
             'font-weight:bold;">PROPOSTA COMERCIAL</div>'+
-            '<div style="    width: 374px;\n' +
-            'height: 120px;\n' +
-            'background-color: blue;"> </div>'+
+            '<div style="width: 100%;\n' +
+            'height: 160px;\n' +
+            'margin-left: auto; margin-right: auto; display: block;"><div style="display: block; text-align: center;"><img src=\'<?php echo "$client->image"; ?>\'></div> </div>'+
             '<p style="text-align:center;\n' +
             'font-family:Lucida Sans Unicode;\n' +
             'font-size:16pt;\n' +
             'font-weight:bold;"><span id="contract-title">' + title + '</span></p>'+
-            '<br><br><br><br><br><br><br><br>'+
+            '<br><br><br><br><br>'+
             '<br>'+
-            'A/C'+
-            '<div style="line-height: 0.5;"><p><strong>Razão social:</strong> <?php echo "$client->company"; ?></p>'+
+            '<div style="line-height: 0.5; margin-left: 1.25cm; margin-right: 1.25cm;"><p>A/C</p><p><strong>Razão social:</strong> <?php echo "$client->company"; ?></p>'+
             '<p><strong>CNPJ:</strong> <?php echo "$client->cnpj"; ?></p>'+
             '<p><strong>Telefone:</strong> <?php echo "$client->phone"; ?></p>'+
             '<p><strong>Endereço:</strong> <?php echo "$client->address"; ?></p>'+
             '<p><strong>Nome do contato:</strong> <?php echo "$client->contact_name"; ?></p>'+
             '<p><strong>E-mail:</strong> <?php echo "$client->email"; ?></p>'+
             '</div>'+
-            '</div> '+
+            '<tocpagebreak />'+
             '<div style=" margin-left: 1.25cm;'+
             'margin-right: 1.25cm;'+
             'background-color: #00b050;'+
@@ -146,7 +142,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 1.	Objeto – Serviço Solicitado</div><indexentry content="01. Objeto – Serviço Solicitado" />'+
+            'line-height:30px;"> &nbsp; <tocentry content="01.\tObjeto – Serviço Solicitado" />1.	Objeto – Serviço Solicitado</div>'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -164,7 +160,7 @@
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
             'line-height:30px;"> ' +
-            '&nbsp; 2. Descrição do Serviço</div><indexentry content="02. Descrição do Serviço" />'+
+            '&nbsp; 2. Descrição do Serviço</div><tocentry content="02. Descrição do Serviço" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -241,7 +237,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 3.\tPré requisitos  </div><indexentry content="03. Pré Requisitos" />'+
+            'line-height:30px;"> &nbsp; 3.\tPré requisitos  </div><tocentry content="03. Pré Requisitos" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -259,7 +255,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 4.\tExceções </div><indexentry content="04. Exceções" />'+
+            'line-height:30px;"> &nbsp; 4.\tExceções </div><tocentry content="04. Exceções" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -277,7 +273,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;">&nbsp; 5.\tAdicional</div><indexentry content="05. Adicional" />'+
+            'line-height:30px;">&nbsp; 5.\tAdicional</div><tocentry content="05. Adicional" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -295,7 +291,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;">&nbsp; 6.\tEquipe de Trabalho</div><indexentry content="06. Equipe de Trabalho" />'+
+            'line-height:30px;">&nbsp; 6.\tEquipe de Trabalho</div><tocentry content="06. Equipe de Trabalho" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -313,7 +309,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 7.\tTempo de Execução </div><indexentry content="07. Tempo de Execução" />'+
+            'line-height:30px;"> &nbsp; 7.\tTempo de Execução </div><tocentry content="07. Tempo de Execução" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -404,7 +400,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;">&nbsp; 8.\tValor </div><indexentry content="08. Valor" />'+
+            'line-height:30px;">&nbsp; 8.\tValor </div><tocentry content="08. Valor" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -422,7 +418,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 9.\tForma de Pagamento   </div><indexentry content="09. Forma de Pagamento" />'+
+            'line-height:30px;"> &nbsp; 9.\tForma de Pagamento   </div><tocentry content="09. Forma de Pagamento" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -442,7 +438,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 10.\tManutenção após entrega  </div><indexentry content="10. Manutenção após entrega" />'+
+            'line-height:30px;"> &nbsp; 10.\tManutenção após entrega  </div><tocentry content="10. Manutenção após entrega" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -460,7 +456,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 11.\tInfraestrutura (Hospedagem)  </div><indexentry content="11. Infraestrutura" />'+
+            'line-height:30px;"> &nbsp; 11.\tInfraestrutura (Hospedagem)  </div><tocentry content="11. Infraestrutura" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -478,7 +474,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 12.\tCDN (Content Delivery Network)  </div><indexentry content="12. CDN (Content Delivery Network)" />'+
+            'line-height:30px;"> &nbsp; 12.\tCDN (Content Delivery Network)  </div><tocentry content="12. CDN (Content Delivery Network)" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -496,7 +492,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 13.\tSustentação </div><indexentry content="13. Sustentação" />'+
+            'line-height:30px;"> &nbsp; 13.\tSustentação </div><tocentry content="13. Sustentação" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
@@ -514,7 +510,7 @@
             'height: 30px;'+
             'font-family:Lucida Sans Unicode;'+
             'font-weight:bold;'+
-            'line-height:30px;"> &nbsp; 14.\tValidade  </div><indexentry content="14. Validade" />'+
+            'line-height:30px;"> &nbsp; 14.\tValidade  </div><tocentry content="14. Validade" />'+
             '<br><div style="margin-left: 1.65cm;'+
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+

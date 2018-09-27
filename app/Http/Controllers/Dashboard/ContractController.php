@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Models\Contract;
+use App\Models\Client;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +20,8 @@ class ContractController extends Controller
     {
         $data = [
             'pageTitle' => 'Contratos cadastrados',
-            'contracts' => Contract::all()
+            'contracts' => Contract::all(),
+            'clients' => Client::all()
         ];
 
         return view('dashboard.contract.index', $data);
@@ -282,24 +284,27 @@ class ContractController extends Controller
 </p>Site: www.everysystem.com.br </p></div>
 ";
 
-        $imgtest = '<img src="http://127.0.0.1:8000/31231.jpeg" />';
+      // $imgtest = "<img src='teste.png'>";
 
         //$mpdf->SetDisplayMode('fullpage');
+        $mpdf->setBasePath('http://localhost:8000/');
+        $mpdf->showImageErrors = true;
         $css = \Illuminate\Support\Facades\File::get(storage_path('css\pdfstyle.css'));
         $mpdf->setAutoBottomMargin;
         $mpdf->SetHtmlFooter($footer);
         $mpdf->SetHTMLHeader($header);
         $mpdf->WriteHTML($css, 1);
         $mpdf->WriteHTML($pagina);
-        $mpdf->WriteHTML(auth()->user()->signature);
-        //$mpdf->WriteHTML($imgtest);
-        $mpdf->Image('/storage/clients/gf.png', 0, 0, 210, 297, 'png', '', true, false);
-        //$mpdf->WriteHTML($imgtest);
-
         $mpdf->AddPage();
-        $mpdf->WriteHTML('<p>Índice</p>', 2);
-        $mpdf->InsertIndex('', 1, '', '');
-        //$mpdf->WriteHTML(auth()->user()->signature);
+        $mpdf->WriteHTML(auth()->user()->signature);
+       // $mpdf->WriteHTML('<indexinsert />');
+      //  $mpdf->WriteHTML($imgtest);
+      //  $mpdf->Image('/sadasf.png', 0, 0, 210, 297, 'png', '', true, false);
+
+
+      //  $mpdf->AddPage();
+       // $mpdf->WriteHTML('<p>Índice</p>', 2);
+       // $mpdf->InsertIndex('', 1, '', '');
 
         $mpdf->Output();
         exit;
@@ -335,33 +340,34 @@ class ContractController extends Controller
 //==============================================================
 //==============================================================
         $mpdf = new \Mpdf\Mpdf(['c', 'A4']);
-        $mpdf->WriteHTML($hhtml);
-        $mpdf->WriteHTML($html);
+       // $mpdf->WriteHTML($hhtml);
+       // $mpdf->WriteHTML($html);
         $mpdf->WriteHTML('<p>This should print on an A4 (portrait) sheet</p>');
-        $mpdf->WriteHTML('<tocpagebreak sheet-size="A4-L" toc-sheet-size="A5" toc-preHTML="This ToC should print on an A5 sheet" />');
-        $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<tocpagebreak />');
+       // $mpdf->WriteHTML($html);
         $mpdf->WriteHTML('<tocentry content="A4 landscape" />
             <p>This page appears just after the ToC and should print on an A4 (landscape) sheet</p>'
         );
-        $mpdf->WriteHTML('<pagebreak sheet-size="A5-L" />');
-        $mpdf->WriteHTML($html);
-        $mpdf->WriteHTML('<tocentry content="A5 landscape" /><p>This should print on an A5 (landscape) sheet</p>');
+        $mpdf->WriteHTML('<pagebreak sheet-size="A4" />');
+   //     $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<tocentry content="A4" /><p>This should print on an A5 (landscape) sheet</p>');
         $mpdf->WriteHTML('<pagebreak sheet-size="Letter" />');
-        $mpdf->WriteHTML($html);
-        $mpdf->WriteHTML('<tocentry content="Letter portrait" /><p>This should print on an Letter sheet</p>');
+     //   $mpdf->WriteHTML($html);
+        $mpdf->WriteHTML('<tocentry content="A4" /><p>This should print on an Letter sheet</p>');
         $mpdf->WriteHTML('<pagebreak sheet-size="150mm 150mm" />');
-        $mpdf->WriteHTML($html);
+     //   $mpdf->WriteHTML($html);
 
         $mpdf->WriteHTML('<tocentry content="150mm square" />
             <p>This should print on a sheet 150mm x 150mm</p>');
         $mpdf->WriteHTML('<pagebreak sheet-size="11.69in 8.27in" />');
-        $mpdf->WriteHTML($html);
+     //   $mpdf->WriteHTML($html);
 
         $mpdf->WriteHTML('<tocentry content="A4 landscape (ins)" />
             <p>This should print on a sheet 11.69in x 8.27in = A4 landscape</p>');
 
         $mpdf->WriteHTML('<pagebreak sheet-size="11.69in 8.27in" />');
-        $mpdf->WriteHTML($html);
+    //    $mpdf->WriteHTML($html);
+
         $mpdf->WriteHTML('<tocentry content="Vampeta" /><p>Vampeta test</p>');
         $mpdf->WriteHTML('<tocentry content="Vampeta 2" /><p>Vampeta test 2</p>');
 

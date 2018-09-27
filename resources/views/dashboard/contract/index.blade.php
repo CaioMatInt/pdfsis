@@ -15,8 +15,6 @@
             </ol>
         </section>
         <section class="content">
-            <img src="/storage/clients/31231.jpeg">
-
             <div class="box">
                 <div class="box-header with-border">
                     <h4 class="box-title">Contratos cadastrados</h4>
@@ -31,7 +29,7 @@
                         <tbody>
                         <tr>
                             <th style="width: 10px">#</th>
-                            <th>Cliente_ID</th>
+                            <th>Cliente</th>
                             <th>Título</th>
                             <th>Area</th>
                             <th>Valor</th>
@@ -39,9 +37,10 @@
                             <th class="text-center">Ações</th>
                         </tr>
                         @foreach($contracts as $row)
+                            @foreach($clients as $client)
                             <tr>
                                 <td>{{ $row->id }}</td>
-                                <td>{{ $row->client_id }}</td>
+                                <td>{{ $client->company }}</td>
                                 <td>{{ $row->title }}</td>
                                 <td>{{ $row->area }}</td>
                                 <td>R$ {{ $row->budget }}</td>
@@ -69,6 +68,7 @@
                                 </td>
                             </tr>
                         @endforeach
+                           @endforeach
                         </tbody>
                     </table>
                 </div>
