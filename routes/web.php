@@ -45,6 +45,7 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
 
 
 
+
 });
 
 Auth::routes();
