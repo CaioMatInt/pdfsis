@@ -115,27 +115,26 @@ class ContractController extends Controller
 
         $this->authorize('delete', Contract::class);
 
-        //TODO: INSERIR UM TRY CATCH, POIS MSG RECEBE ANTES A CONFIRMAÇÃO
-
+        try {
         $contracts = Contract::find($id);
-
+        $contracts->delete();
         $msg = [
             'type' => 'success',
             'text' => 'Contrato ' . $contracts->title . ' removido com sucesso',
         ];
 
-        if (!$contracts) {
+            return redirect()->route('contracts.index')->with('msg', $msg);
+        }
+        catch (\Exception $e){
+
+
             $msg = [
                 'type' => 'danger',
                 'text' => 'Contrato não encontrado',
             ];
-            return redirect()->route('clients.index')->with('msg', $msg);
-        } else {
-            $contracts->delete();
-            return redirect()->route('contracts.index')->with('msg', $msg);
-
+            return redirect()->route('contracts.index')->with('msg', $msg); }
         }
-    }
+
 
     public function print($id)
     {
@@ -285,9 +284,11 @@ class ContractController extends Controller
 ";
 
       // $imgtest = "<img src='teste.png'>";
+        $basepath = url('');
+        $basepath = $basepath.'/';
 
         //$mpdf->SetDisplayMode('fullpage');
-        $mpdf->setBasePath('http://localhost:8000/');
+        $mpdf->setBasePath($basepath);
         $mpdf->showImageErrors = true;
         $css = \Illuminate\Support\Facades\File::get(storage_path('css\pdfstyle.css'));
         $mpdf->setAutoBottomMargin;

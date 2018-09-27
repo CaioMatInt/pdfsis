@@ -31,6 +31,7 @@
                             <th style="width: 10px">#</th>
                             <th>Cliente</th>
                             <th>Título</th>
+                            <th>Versão</th>
                             <th>Area</th>
                             <th>Valor</th>
                             <th>Data da criação</th>
@@ -42,6 +43,7 @@
                                 <td>{{ $row->id }}</td>
                                 <td>{{ $client->company }}</td>
                                 <td>{{ $row->title }}</td>
+                                <td>{{ $row->version }}</td>
                                 <td>{{ $row->area }}</td>
                                 <td>R$ {{ $row->budget }}</td>
                                 <td>{{ $row->created_at }}</td>

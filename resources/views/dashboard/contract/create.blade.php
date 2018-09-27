@@ -111,6 +111,7 @@
         function initContract(){
             let title = document.getElementById("title").value;
             let budget = document.getElementById("budget").value;
+            let control_proposal = document.getElementById("control_proposal").value;
         let layout = '<br><br><br><div style="text-align:center;\n' +
             'font-family:Lucida Sans Unicode;\n' +
             'font-size:20pt;\n' +
@@ -122,6 +123,7 @@
             'font-family:Lucida Sans Unicode;\n' +
             'font-size:16pt;\n' +
             'font-weight:bold;"><span id="contract-title">' + title + '</span></p>'+
+             '<div style="text-align: center">(' + control_proposal +')</div>' +
             '<br><br><br><br><br>'+
             '<br>'+
             '<div style="line-height: 0.5; margin-left: 1.25cm; margin-right: 1.25cm;"><p>A/C</p><p><strong>Razão social:</strong> <?php echo "$client->company"; ?></p>'+
@@ -479,7 +481,10 @@
             'margin-right: 1.65cm;'+
             'font-family:Lucida Sans Unicode;'+
             'font-size: 13.5px;">'+
-            'INSERIR CDN FIXOAQUI'+
+            '<p>A utilização de CDN é recomendável para todos os sites, proporcionando performance e redução de custos com os players.</p>\n' +
+            '<p>Segue abaixo dois orçamentos para cada site:</p>\n' +
+            '<p>CDN – Every System &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>R$ 59.99/mês</strong></p>\n' +
+            '<p>Amazon CloudFront &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong>USD: 120.90/mês</strong></p>'+
             '</div><br>' +
 
             '<div style=" margin-left: 1.25cm;'+
