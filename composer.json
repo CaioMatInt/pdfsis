@@ -25,8 +25,9 @@
             "database/factories"
         ],
         "psr-4": {
-            "App\\": "app/"
-        }
+            "App\\": "app/",
+			"Mpdf\\": "app/overrides/"
+			}
     },
     "autoload-dev": {
         "psr-4": {
@@ -39,6 +40,9 @@
             ]
         }
     },
+	
+	"exclude-from-classmap": ["vendor\\mpdf\\mpdf\\src\\Config\\ConfigVariables.php"],
+	
     "scripts": {
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
