@@ -38,7 +38,7 @@
                                 <label for="control_proposal">Número da proposta</label>
                                 <input type="text" class="form-control" name="control_proposal" id="control_proposal"
                                        value="<?php if (isset($contract->control_proposal)){ echo $contract->control_proposal;}
-                                       else { ?>{{ old('control_proposal') }} <?php } ?>" placeholder="(Proposta_XX201899)">
+                                       else{?>{{old('control_proposal')}}<?php } ?>" placeholder="(Proposta_XX201899)">
                                 @if ($errors->has('control_proposal'))
                                     <span class="help-block">{{ $errors->first('control_proposal') }}</span>
                                 @endif
@@ -46,7 +46,7 @@
                             <div class="form-group {{ $errors->has('version') ? 'has-error' : '' }}">
                                 <label for="version">Versão</label>
                                 <input type="number" step=any  class="form-control" name="version" id="version" value="<?php if
-                                (isset($contract->version)) { echo $contract->version+0.1;} else { ?>1<?php } ?>">
+                                (isset($contract->version)) { echo $contract->version;} else { ?>1<?php } ?>">
                                 @if ($errors->has('version'))
                                     <span class="help-block">{{ $errors->first('version') }}</span>
                                 @endif
@@ -80,15 +80,6 @@
                                         <label for="proposal">Proposta Comercial</label>
                                         <textarea class="form-control" name="proposal" id="proposal" value="<?php if
                                         (isset($contract->proposal)) { echo $contract->proposal;} else { ?>{{old('proposal')}}<?php } ?>">
-
-
-
-
-
-
-
-
-
                                         </textarea>
                                         @if ($errors->has('proposal'))
                                             <span class="help-block">{{ $errors->first('proposal') }}</span>

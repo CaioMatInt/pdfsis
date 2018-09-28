@@ -37,6 +37,8 @@ class ContractController extends Controller
     {
         if (isset($clientArray->contract_id)){
             $contract = Contract::find($clientArray->contract_id);
+            $lastContract =  Contract::where('title', $contract->title)->max('version');
+            $contract->version = $lastContract + 0.1;
         } else{
             $contract = NULL;
         }
