@@ -35,9 +35,17 @@ class ContractController extends Controller
      */
     public function create(Request $clientArray)
     {
+        if (isset($clientArray->contract_id)){
+            $contract = Contract::find($clientArray->contract_id);
+        } else{
+            $contract = NULL;
+        }
+
         $data = [
             'pageTitle' => 'Criar novo contrato',
-            'client' => $clientArray
+            'client' => $clientArray,
+            'contract' => $contract
+
         ];
 
         return view('dashboard.contract.create', $data);

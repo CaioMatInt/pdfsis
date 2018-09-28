@@ -23,7 +23,7 @@ class CreateContractsTable extends Migration
             $table->float('budget');
             $table->mediumText('proposal');
 
-            $table->string('image', 255)->nullable();
+
             $table->timestamps();
             $table->foreign('client_id')->references('id')->on('clients');
         });

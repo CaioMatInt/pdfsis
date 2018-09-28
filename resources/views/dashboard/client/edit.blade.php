@@ -94,6 +94,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="ImagemAtual">Imagem Atual</label><br>
+                                    <img src="{{ Storage::url($clients->image_local)}}">
+                                </div>
+                            </div>
+                        </div>
                         <div class="box-footer">
                             <div class="form-group">
                                 <button type="button" class="btn btn-default btn-flat btn-tab-back btn-history-back">

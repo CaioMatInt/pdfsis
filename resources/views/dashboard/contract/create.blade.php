@@ -28,28 +28,34 @@
                             {{ @csrf_field() }}
                             <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
                                 <label for="title">Título</label>
-                                <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
-                                @if ($errors->has('title'))
+                                <input type="text" class="form-control" name="title" id="title" value="<?php if (isset($contract->title))
+                                { echo $contract->title;} else { ?>{{ old('title') }} <?php } ?>">
+                            @if ($errors->has('title'))
                                     <span class="help-block">{{ $errors->first('title') }}</span>
                                 @endif
                             </div>
                             <div class="form-group {{ $errors->has('control_proposal') ? 'has-error' : '' }}">
                                 <label for="control_proposal">Número da proposta</label>
-                                <input type="text" class="form-control" name="control_proposal" id="control_proposal" value="{{ old('control_proposal') }}" placeholder="(Proposta_XX201899)">
+                                <input type="text" class="form-control" name="control_proposal" id="control_proposal"
+                                       value="<?php if (isset($contract->control_proposal)){ echo $contract->control_proposal;}
+                                       else { ?>{{ old('control_proposal') }} <?php } ?>" placeholder="(Proposta_XX201899)">
                                 @if ($errors->has('control_proposal'))
                                     <span class="help-block">{{ $errors->first('control_proposal') }}</span>
                                 @endif
                             </div>
                             <div class="form-group {{ $errors->has('version') ? 'has-error' : '' }}">
                                 <label for="version">Versão</label>
-                                <input type="number" step=any  class="form-control" name="version" id="version" value=1>
+                                <input type="number" step=any  class="form-control" name="version" id="version" value="<?php if
+                                (isset($contract->version)) { echo $contract->version+0.1;} else { ?>1<?php } ?>">
                                 @if ($errors->has('version'))
                                     <span class="help-block">{{ $errors->first('version') }}</span>
                                 @endif
                             </div>
                             <div class="form-group {{ $errors->has('area') ? 'has-error' : '' }}">
                                 <label for="area">Área</label>
-                                <select id="area" class="form-control" name="area"><option selected>Desenvolvimento</option>
+                                <select id="area" class="form-control" name="area">
+                                <?php if(isset($contract->area)) { echo "<option selected>$contract->area</option>"; } ?>
+                                    <option>Desenvolvimento</option>
                                     <option>Infraestrutura</option>
                                     <option>Segurança da Informação</option>
                                     <option>Cloud</option>
@@ -61,7 +67,8 @@
 
                             <div class="form-group {{ $errors->has('budget') ? 'has-error' : '' }}">
                                 <label for="budget">Valor</label>
-                                <input type="number" step=any class="form-control" name="budget" id="budget" value="{{ old('budget') }}" placeholder="99.999">
+                                <input type="number" step=any class="form-control" name="budget" id="budget" value="<?php if
+                                (isset($contract->budget)) { echo $contract->budget;} else { ?>{{old('budget')}}<?php } ?>">
                                 @if ($errors->has('budget'))
                                     <span class="help-block">{{ $errors->first('budget') }}</span>
                                 @endif
@@ -71,7 +78,18 @@
                                 <div class="col-md-12">
                                     <div class="form-group {{ $errors->has('proposal') ? 'has-error' : '' }}">
                                         <label for="proposal">Proposta Comercial</label>
-                                        <textarea class="form-control" name="proposal" id="proposal" value="{{ old('proposal') }}"></textarea>
+                                        <textarea class="form-control" name="proposal" id="proposal" value="<?php if
+                                        (isset($contract->proposal)) { echo $contract->proposal;} else { ?>{{old('proposal')}}<?php } ?>">
+
+
+
+
+
+
+
+
+
+                                        </textarea>
                                         @if ($errors->has('proposal'))
                                             <span class="help-block">{{ $errors->first('proposal') }}</span>
                                         @endif

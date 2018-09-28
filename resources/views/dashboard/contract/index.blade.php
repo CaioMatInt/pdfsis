@@ -66,7 +66,12 @@
                                            data-placement="top" target="_blank">
                                             <i class="fa fa-print"></i>
                                         </a>
-                                        <a href="{{ route('contracts.edit', $row->id) }}"
+                                        <?php $clientArray = array("id" => $client->id,"company" => $client->company,
+                                            "cnpj" => $client->cnpj, "phone" => $client->phone, "address" => $client->address,
+                                            "contact_name" => $client->contact_name, "email" => $client->email, "image" => $client->image,
+                                             "contract_id" => $row->id );
+                                        ?>
+                                        <a href="{{ route('contracts.create', $clientArray) }}"
                                            class="btn btn-success btn-flat" data-toggle="tooltip" title="Criar Versão"
                                            data-placement="top">
                                             <i class="fa fa-copy"></i>

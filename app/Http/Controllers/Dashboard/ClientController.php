@@ -78,8 +78,8 @@ class ClientController extends Controller
                 $imgName = str_slug($request->input('company')) . '.' . $request->image->extension();
 
                 $path = $request->image->storeAs('public/clients', $imgName);
-
-                $pathPdf = 'storage/clients/'.$imgName;
+                    Client::where('company', $request->company)->update(['image_local' => $path]);
+                    $pathPdf = 'storage/clients/'.$imgName;
                     Client::where('company', $request->company)->update(['image' => $pathPdf]);
 
                 }
@@ -165,7 +165,10 @@ class ClientController extends Controller
 
                 $path = $request->image->storeAs('public/clients', $imgName);
 
+                Client::where('company', $request->company)->update(['image_local' => $path]);
+
                 $pathPdf = 'storage/clients/'.$imgName;
+
                 Client::where('company', $request->company)->update(['image' => $pathPdf]);
 
             }

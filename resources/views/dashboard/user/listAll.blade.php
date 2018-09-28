@@ -48,8 +48,11 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->type }}</td>
-                                <?php if ($user->type == 'admin') {  ?><td>	<center><i class="glyphicon glyphicon-sunglasses" ></i></center></td> <?php } ?>
-                                <?php if ($user->type == 'common') {  ?><td>	<center><i class="fa fa-user" ></i></center></td> <?php } ?>
+                                @if($user->type == 'admin')
+                                    <td><center><i class="glyphicon glyphicon-sunglasses" ></i></center></td>
+                                 @else
+                                    <td>	<center><i class="fa fa-user" ></i></center></td>
+                                @endif
                                 <td class="text-center" style="width: 180px;">
                                     <div class="btn-group">
                                         <a href="{{ route('user.edit', $user->user_id) }}"
