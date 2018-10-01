@@ -1,3 +1,7 @@
+tr.collapse.in {
+    display:table-row;
+}
+
 #btn-insert {
     height:20px;
     width:125px;

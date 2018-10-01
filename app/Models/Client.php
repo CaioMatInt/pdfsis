@@ -10,7 +10,7 @@ class Client extends Model
 
     protected $fillable = ['id', 'company', 'cnpj', 'phone', 'address', 'contact_name', 'email', 'image', 'image_local'];
 
-    public function client()
+    public function contracts()
     {
         return $this->hasMany(Contract::class, 'category_id', 'id');
     }

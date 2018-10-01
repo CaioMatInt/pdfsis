@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ContractController extends Controller
 {
@@ -18,10 +19,32 @@ class ContractController extends Controller
      */
     public function index()
     {
+
+
+       /* $filtrado = DB::table('contracts')
+            ->select('*', DB::raw('MAX(version)'))->groupBy('title');
+
+        $users = DB::table('contracts')
+            ->join('clients', 'clients.id', '=', 'contracts.id')
+            ->select('contracts.*')
+            ->get(); */
+
+        $sql = "SELECT *
+                FROM contracts
+                INNER JOIN
+                (SELECT title, MAX(version) AS Maxversion
+                FROM contracts
+                GROUP BY title) topversion 
+                ON contracts.title = topversion.title 
+                AND contracts.version = topversion.maxversion;";
+        $contractLast = DB::select( DB::raw($sql));
+
         $data = [
             'pageTitle' => 'Contratos cadastrados',
             'contracts' => Contract::all(),
-            'clients' => Client::all()
+            'lastContract' => $contractLast,
+            'clients' => Client::all(),
+           // 'lastVersion' => $lastContract
         ];
 
         return view('dashboard.contract.index', $data);
@@ -46,8 +69,7 @@ class ContractController extends Controller
         $data = [
             'pageTitle' => 'Criar novo contrato',
             'client' => $clientArray,
-            'contract' => $contract
-
+            'contract' => $contract,
         ];
 
         return view('dashboard.contract.create', $data);

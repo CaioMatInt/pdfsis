@@ -25,7 +25,9 @@
                             {{ session('msg.text') }}
                         @endcomponent
                     @endif
-                    <table class="table table-striped table-bordered">
+                </div>
+
+                        <table class="table table-striped table-bordered">
                         <tbody>
                         <tr>
                             <th style="width: 10px">#</th>
@@ -37,39 +39,75 @@
                             <th>Data da criação</th>
                             <th class="text-center">Ações</th>
                         </tr>
-                        @foreach($contracts as $row)
-                            @foreach($clients as $client)
-                            <tr>
-                                <td>{{ $row->id }}</td>
-                                <td>{{ $client->company }}</td>
-                                <td>{{ $row->title }}</td>
-                                <td>{{ $row->version }}</td>
-                                <td>{{ $row->area }}</td>
-                                <td>R$ {{ $row->budget }}</td>
-                                <td>{{ $row->created_at }}</td>
+                        <?php $temp_order = 1; ?>
+                        @foreach($contracts as $contract)
+                            <?php $temp_version;
+
+
+                            if (!isset($temp_name)) {
+                            $temp_name = $contract->title;
+                            ?><tr data-toggle="collapse" data-target=".order<?php echo $temp_order ?>"><?php
+                                    $temp_toggle = true;
+                            }
+                            else {
+                                if ($temp_name == $contract->title){
+                            ?> <tr class="collapse order<?php echo $temp_order ?>"><?php
+                                   $temp_toggle = false;
+                                } else{
+                                   $temp_name = $contract->title;
+                                   $temp_order += 1;
+                                   ?><tr data-toggle="collapse" data-target=".order<?php echo $temp_order ?>"><?php
+                                  $temp_toggle = true;
+
+
+                                echo "Outra proposta (turn) ";
+                                   $temp_version = 1;
+                                }
+                            };
+
+
+                            if (!isset($temp_version)) {
+                                $temp_version = $contract->version;
+                            } else {
+                                if ($contract->version > $temp_version){
+                                        $temp_version = $contract->version;
+                                }
+                            }
+
+                            echo $temp_version;
+
+                            ?>
+                                <td>{{ $contract->id }}</td>
+                                <td>{{ $contract->client->company }}</td>
+                                <td>{{ $contract->title }}</td>
+                                <td>{{ $contract->version }} <?php if ($temp_toggle==true){ ?> <i class="fa fa-sort-desc" ></i></td> <?php } ?>
+                                <td>{{ $contract->area }}</td>
+                                <td>R$ {{ $contract->budget }}</td>
+                                <td>{{ $contract->created_at }}</td>
                                 <td class="text-center" style="width: 180px;">
                                     <div class="btn-group">
-                                        <a href="{{ route('contracts.edit', $row->id) }}"
+                                        <a href="{{ route('contracts.edit', $contract->id) }}"
                                            class="btn btn-default btn-flat" data-toggle="tooltip" title="Editar"
                                            data-placement="top">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>
                                         @can('delete', App\Models\Contract::class)
                                         <button type="button" class="btn btn-default btn-flat btn-delete-contract"
-                                                data-url="{{ route('contracts.destroy', $row->id) }}"
+                                                data-url="{{ route('contracts.destroy', $contract->id) }}"
                                                 data-toggle="tooltip" title="Excluir" data-placement="top">
                                             <i class="fa fa-trash text-danger"></i>
                                         </button>
                                         @endcan
-                                        <a href="{{ route('contracts.print', $row->id) }}"
+                                        <a href="{{ route('contracts.print', $contract->id) }}"
                                            class="btn btn-default btn-flat" data-toggle="tooltip" title="Gerar PDF"
                                            data-placement="top" target="_blank">
                                             <i class="fa fa-print"></i>
                                         </a>
-                                        <?php $clientArray = array("id" => $client->id,"company" => $client->company,
-                                            "cnpj" => $client->cnpj, "phone" => $client->phone, "address" => $client->address,
-                                            "contact_name" => $client->contact_name, "email" => $client->email, "image" => $client->image,
-                                             "contract_id" => $row->id );
+                                        <?php $clientArray = array("id" => $contract->client->id,"company" => $contract->client->company,
+                                            "cnpj" => $contract->client->cnpj, "phone" => $contract->client->phone,
+                                            "address" => $contract->client->address, "contact_name" => $contract->client->contact_name,
+                                            "email" => $contract->client->email, "image" => $contract->client->image,
+                                            "contract_id" => $contract->client->id );
                                         ?>
                                         <a href="{{ route('contracts.create', $clientArray) }}"
                                            class="btn btn-success btn-flat" data-toggle="tooltip" title="Criar Versão"
@@ -80,12 +118,9 @@
                                 </td>
                             </tr>
                         @endforeach
-                           @endforeach
                         </tbody>
                     </table>
                 </div>
-            </div>
-
         </section>
     </div>
 @endsection

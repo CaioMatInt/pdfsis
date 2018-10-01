@@ -10,7 +10,7 @@ class Contract extends Model
 
     protected $fillable = ['id', 'client_id', 'title', 'area', 'proposal', 'budget', 'version', 'control_proposal'];
 
-    public function contract()
+    public function client()
     {
         return $this->belongsTo(Client::class, 'client_id', 'id');
     }
