@@ -4,6 +4,34 @@
 
 @section('content')
 
+    <?php
+
+    try{
+        $propNumber = $lastProposalNumber->control_proposal;
+    }catch (Exception $exception){
+        $propNumber = null;
+    }
+        if ($propNumber != NULL){
+            //Incrementar proposta
+            //TODO: pensar em maneira mais inteligente e escalável
+        if ($propNumber == 'PropostaEV_201899'){
+            $propNumber = 'PropostaEV_2018100';
+        };
+        if ($propNumber == 'PropostaEV_2018199'){
+            $propNumber = 'PropostaEV_2018200';
+        };
+        if ($propNumber == 'PropostaEV_2018299'){
+            $propNumber = 'PropostaEV_2018300';
+        };
+        if ($propNumber == 'PropostaEV_2018399'){
+            $propNumber = 'PropostaEV_2018400';
+        };
+            $propNumber++; }
+
+     ?>
+
+
+
     <div class="content-wrapper">
         <section class="content-header">
             <h1>
@@ -38,7 +66,9 @@
                                 <label for="control_proposal">Número da proposta</label>
                                 <input type="text" class="form-control" name="control_proposal" id="control_proposal"
                                        value="<?php if (isset($contract->control_proposal)){ echo $contract->control_proposal;}
-                                       else{?>{{old('control_proposal')}}<?php } ?>" placeholder="(Proposta_XX201899)">
+                                       else if($propNumber != NULL){echo $propNumber; }
+                                       else if($propNumber == NULL){echo 'PropostaEV_201860';}
+                                       ?>">
                                 @if ($errors->has('control_proposal'))
                                     <span class="help-block">{{ $errors->first('control_proposal') }}</span>
                                 @endif
@@ -116,6 +146,13 @@
 @section('scripts')
     <script src="{{ asset('assets/js/plugins/tinymce/tinymce.min.js') }}"></script>
     <script>
+        document.getElementById('control_proposal').onkeydown = function(e){
+            e.preventDefault();
+        }
+
+
+    </script>
+    <script>
 
         function initContract(){
             let title = document.getElementById("title").value;
@@ -142,7 +179,7 @@
             '<p><strong>Nome do contato:</strong> <?php echo "$client->contact_name"; ?></p>'+
             '<p><strong>E-mail:</strong> <?php echo "$client->email"; ?></p>'+
             '</div>'+
-            '<tocpagebreak />'+
+            '<tocpagebreak toc-margin-left="90" toc-margin-right="90" />'+
             '<div style=" margin-left: 1.25cm;'+
             'margin-right: 1.25cm;'+
             'background-color: #00b050;'+

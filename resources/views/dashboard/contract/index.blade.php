@@ -51,7 +51,7 @@
                             }
                             else {
                                 if ($temp_name == $contract->title){
-                            ?> <tr class="collapse order<?php echo $temp_order ?>"><?php
+                            ?><tr class="collapse order<?php echo $temp_order ?>"><?php
                                    $temp_toggle = false;
                                 } else{
                                    $temp_name = $contract->title;
@@ -107,7 +107,7 @@
                                             "cnpj" => $contract->client->cnpj, "phone" => $contract->client->phone,
                                             "address" => $contract->client->address, "contact_name" => $contract->client->contact_name,
                                             "email" => $contract->client->email, "image" => $contract->client->image,
-                                            "contract_id" => $contract->client->id );
+                                            "contract_id" => $contract->id );
                                         ?>
                                         <a href="{{ route('contracts.create', $clientArray) }}"
                                            class="btn btn-success btn-flat" data-toggle="tooltip" title="Criar Versão"

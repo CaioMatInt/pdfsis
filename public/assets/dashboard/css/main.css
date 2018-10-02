@@ -2,6 +2,10 @@ tr.collapse.in {
     display:table-row;
 }
 
+#control_proposal{
+    background-color: #BBBBBB;
+}
+
 #btn-insert {
     height:20px;
     width:125px;

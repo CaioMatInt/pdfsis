@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent;
+
 
 class ContractController extends Controller
 {
@@ -64,12 +66,21 @@ class ContractController extends Controller
             $contract->version = $lastContract + 0.1;
         } else{
             $contract = NULL;
+
+
+
+            $lastProposalNumber = Contract::orderBy('created_at', 'desc')->limit(1)
+                ->first();
+
+
+
         }
 
         $data = [
             'pageTitle' => 'Criar novo contrato',
             'client' => $clientArray,
             'contract' => $contract,
+            'lastProposalNumber' => $lastProposalNumber
         ];
 
         return view('dashboard.contract.create', $data);
