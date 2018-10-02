@@ -26,7 +26,11 @@
         if ($propNumber == 'PropostaEV_2018399'){
             $propNumber = 'PropostaEV_2018400';
         };
-            $propNumber++; }
+        if ($propNumber == 'PropostaEV_2018399'){
+                $propNumber = 'PropostaEV_2018400';
+        };
+
+        $propNumber++; }
 
      ?>
 
@@ -64,7 +68,17 @@
                             </div>
                             <div class="form-group {{ $errors->has('control_proposal') ? 'has-error' : '' }}">
                                 <label for="control_proposal">Número da proposta</label>
-                                <input type="text" class="form-control" name="control_proposal" id="control_proposal"
+                                <input disabled type="text" class="form-control" name="control_proposal" id="control_proposal"
+                                       value="<?php if (isset($contract->control_proposal)){ echo $contract->control_proposal;}
+                                       else if($propNumber != NULL){echo $propNumber; }
+                                       else if($propNumber == NULL){echo 'PropostaEV_201860';}
+                                       ?>">
+                                @if ($errors->has('control_proposal'))
+                                    <span class="help-block">{{ $errors->first('control_proposal') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group {{ $errors->has('control_proposal') ? 'has-error' : '' }}">
+                                <input type="hidden" class="form-control" name="control_proposal" id="control_proposal"
                                        value="<?php if (isset($contract->control_proposal)){ echo $contract->control_proposal;}
                                        else if($propNumber != NULL){echo $propNumber; }
                                        else if($propNumber == NULL){echo 'PropostaEV_201860';}
@@ -179,7 +193,7 @@
             '<p><strong>Nome do contato:</strong> <?php echo "$client->contact_name"; ?></p>'+
             '<p><strong>E-mail:</strong> <?php echo "$client->email"; ?></p>'+
             '</div>'+
-            '<tocpagebreak toc-margin-left="90" toc-margin-right="90" />'+
+            '<tocpagebreak />'+
             '<div style=" margin-left: 1.25cm;'+
             'margin-right: 1.25cm;'+
             'background-color: #00b050;'+

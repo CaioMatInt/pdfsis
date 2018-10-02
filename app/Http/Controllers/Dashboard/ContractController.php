@@ -31,6 +31,7 @@ class ContractController extends Controller
             ->select('contracts.*')
             ->get(); */
 
+
         $sql = "SELECT *
                 FROM contracts
                 INNER JOIN
@@ -43,7 +44,7 @@ class ContractController extends Controller
 
         $data = [
             'pageTitle' => 'Contratos cadastrados',
-            'contracts' => Contract::all(),
+            'contracts' => Contract::orderBy('title')->get(),
             'lastContract' => $contractLast,
             'clients' => Client::all(),
            // 'lastVersion' => $lastContract
@@ -64,18 +65,12 @@ class ContractController extends Controller
             $contract = Contract::find($clientArray->contract_id);
             $lastContract =  Contract::where('title', $contract->title)->max('version');
             $contract->version = $lastContract + 0.1;
+            $lastProposalNumber = NULL;
         } else{
             $contract = NULL;
-
-
-
             $lastProposalNumber = Contract::orderBy('created_at', 'desc')->limit(1)
                 ->first();
-
-
-
         }
-
         $data = [
             'pageTitle' => 'Criar novo contrato',
             'client' => $clientArray,
@@ -182,7 +177,7 @@ class ContractController extends Controller
     public function print($id)
     {
         $contract = Contract::find($id);
-        $lol = Storage::url('images/everylogo.png');
+        //$lol = Storage::url('images/everylogo.png');
 
         //Converter created_at para formato BR para imprimir no contrato
         $dateBR = $contract->created_at->toDateString();
@@ -311,7 +306,7 @@ class ContractController extends Controller
     <p>Jardim Guanabara, Campinas/SP</p> 
     </div>";
 
-        $header = "<div class='cabecalho'><img src='http://i64.tinypic.com/im2eth.png' width='145' height='47'/>
+        $header = "<div class='cabecalho'><img src='images/every1.png' width='145' height='47'/>
     <hr>";
 
         $assinaturaRenan = "

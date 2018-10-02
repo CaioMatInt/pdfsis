@@ -58,24 +58,17 @@
                                    $temp_order += 1;
                                    ?><tr data-toggle="collapse" data-target=".order<?php echo $temp_order ?>"><?php
                                   $temp_toggle = true;
-
-
-                                echo "Outra proposta (turn) ";
-                                   $temp_version = 1;
+                                 //  $temp_version = 1;
                                 }
                             };
-
-
-                            if (!isset($temp_version)) {
+                         /*   if (!isset($temp_version)) {
                                 $temp_version = $contract->version;
                             } else {
                                 if ($contract->version > $temp_version){
                                         $temp_version = $contract->version;
                                 }
                             }
-
-                            echo $temp_version;
-
+                            echo $temp_version;*/
                             ?>
                                 <td>{{ $contract->id }}</td>
                                 <td>{{ $contract->client->company }}</td>
@@ -83,7 +76,9 @@
                                 <td>{{ $contract->version }} <?php if ($temp_toggle==true){ ?> <i class="fa fa-sort-desc" ></i></td> <?php } ?>
                                 <td>{{ $contract->area }}</td>
                                 <td>R$ {{ $contract->budget }}</td>
-                                <td>{{ $contract->created_at }}</td>
+                                <?php $dateBR = $contract->created_at->toDateString();
+                                  $dateBR = date('d/m/Y', strtotime($dateBR)); ?>
+                                <td>{{ $dateBR }}</td>
                                 <td class="text-center" style="width: 180px;">
                                     <div class="btn-group">
                                         <a href="{{ route('contracts.edit', $contract->id) }}"

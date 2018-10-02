@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManagerStatic as Image;
 
+
+
 class ClientController extends Controller
 {
     /**
@@ -78,12 +80,20 @@ class ClientController extends Controller
                 $imgName = str_slug($request->input('company')) . '.' . $request->image->extension();
 
                 $path = $request->image->storeAs('public/clients', $imgName);
+
+                    $image = Image::make($request->image);
+
+                    $image->resize(250, 250);
+
+                $publicPath =  public_path('storage/clients' . $imgName);
+
+                    $image->save($publicPath);
+
+
                     Client::where('company', $request->company)->update(['image_local' => $path]);
                     $pathPdf = 'storage/clients/'.$imgName;
                     Client::where('company', $request->company)->update(['image' => $pathPdf]);
-
                 }
-
             $msg = [
                 'type' => 'success',
                 'text' => 'Cliente ' . $request->company . ' cadastrado com sucesso',
