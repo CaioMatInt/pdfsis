@@ -24,6 +24,8 @@
             "database/seeds",
             "database/factories"
         ],
+        "exclude-from-classmap": ["vendor\\mpdf\\mpdf\\src\\Config\\ConfigVariables.php"],
+
         "psr-4": {
             "App\\": "app/",
 			"Mpdf\\": "app/overrides/"
