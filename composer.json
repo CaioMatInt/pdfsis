@@ -41,7 +41,7 @@
         }
     },
 	
-	"exclude-from-classmap": ["vendor\\mpdf\\mpdf\\src\\Config\\ConfigVariables.php"],
+	"exclude-from-classmap": { ["vendor\\mpdf\\mpdf\\src\\Config\\ConfigVariables.php"] },
 	
     "scripts": {
         "post-root-package-install": [

@@ -22,7 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('contact_name', 50);
             $table->string('image')->nullable();
             $table->string('image_local', 255)->nullable();
-            $table->string('thumb')->nullable();
+         //   $table->string('thumb')->nullable();
             $table->string('email', 100);
             $table->timestamps();
         });

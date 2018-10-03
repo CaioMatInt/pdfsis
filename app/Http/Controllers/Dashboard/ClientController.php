@@ -81,14 +81,13 @@ class ClientController extends Controller
 
                 $path = $request->image->storeAs('public/clients', $imgName);
 
-                    $image = Image::make($request->image);
+                  /*  $image = Image::make($request->image);
 
                     $image->resize(250, 250);
 
                 $publicPath =  public_path('storage/clients' . $imgName);
 
-                    $image->save($publicPath);
-
+                    $image->save($publicPath);*/
 
                     Client::where('company', $request->company)->update(['image_local' => $path]);
                     $pathPdf = 'storage/clients/'.$imgName;
